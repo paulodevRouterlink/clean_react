@@ -1,5 +1,9 @@
-interface HttpPostClient {
-  post(url: string): Promise<void>
+type HttpPostParams = {
+  url: string
 }
 
-export type { HttpPostClient }
+interface HttpPostClient {
+  post(params: HttpPostParams): Promise<void>
+}
+
+export type { HttpPostClient, HttpPostParams }
