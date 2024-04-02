@@ -1,7 +1,7 @@
-import { HttpPostClient, HttpStatusCode } from '@/data/protocols'
-import { Errors } from '@/domain/errors/errors'
-import { AccountModel } from '@/domain/models/account-models'
 import { AuthParams, IAuthentication } from '@/domain/usecases/auth/auth'
+import { HttpPostClient, HttpStatusCode } from '@/data/protocols/http'
+import { AccountModel } from '@/domain/models/account-models'
+import { Errors } from '@/domain/errors'
 
 export class RemoteAuthentication implements IAuthentication {
   constructor(
