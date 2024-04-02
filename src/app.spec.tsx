@@ -1,5 +1,5 @@
-/* eslint-disable prettier/prettier */
-import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react'
+import { App } from './app'
 
 describe('Jest', () => {
   it('should work', () => {
@@ -7,6 +7,8 @@ describe('Jest', () => {
   })
 
   it('work2', () => {
-    expect(1).toBe(1)
+    render(<App />)
+
+    screen.debug()
   })
 })
