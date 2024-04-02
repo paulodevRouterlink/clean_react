@@ -9,4 +9,4 @@ interface IAuth {
   auth(params: AuthParams): Promise<AccountModel>
 }
 
-export type { IAuth }
+export type { IAuth, AuthParams }
