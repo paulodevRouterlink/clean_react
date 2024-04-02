@@ -9,6 +9,8 @@ describe('Jest', () => {
   it('work2', () => {
     render(<App />)
 
-    screen.debug()
+    expect(
+      screen.getByRole('heading', { name: 'Hello World!' }),
+    ).toBeInTheDocument()
   })
 })
