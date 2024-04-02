@@ -5,8 +5,8 @@ type AuthParams = {
   password: string
 }
 
-interface IAuth {
+interface IAuthentication {
   auth(params: AuthParams): Promise<AccountModel>
 }
 
-export type { IAuth, AuthParams }
+export type { IAuthentication, AuthParams }
