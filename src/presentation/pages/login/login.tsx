@@ -34,7 +34,7 @@ const Login: FC = () => {
 
         <span className={Styled.link}>Criar conta</span>
       </form>
-      <footer className={Styled.footer}>Login</footer>
+      <footer className={Styled.footer} />
     </main>
   )
 }

@@ -19,7 +19,9 @@
   gap: main.$spacing-2_5;
 
   &:hover {
-    background-color: main.$black-olive;
+    background-color: main.$orange-web;
+    border-color: main.$black-olive;
+    color: main.$black-olive;
   }
 
   &:active {
