@@ -22,7 +22,8 @@
     "types": ["node"],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["src", ".jest/setup-tests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

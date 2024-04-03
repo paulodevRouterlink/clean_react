@@ -1,0 +1,26 @@
+// SIZES
+$sizes-3xs: 14rem;
+$sizes-2xs: 16rem;
+$sizes-xs: 20rem;
+$sizes-sm: 24rem;
+$sizes-md: 28rem;
+$sizes-lg: 32rem;
+$sizes-xl: 36rem;
+$sizes-2xl: 42rem;
+$sizes-3xl: 48rem;
+$sizes-4xl: 56rem;
+$sizes-5xl: 64rem;
+$sizes-6xl: 72rem;
+$sizes-7xl: 80rem;
+$sizes-8xl: 90rem;
+
+// CONTAINER
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+
+@mixin size($sizes){
+  width: $sizes;
+  height: $sizes;
+}

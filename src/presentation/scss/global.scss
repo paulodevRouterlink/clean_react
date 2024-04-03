@@ -1,0 +1,44 @@
+@use './main.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  ::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: main.$secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: main.$primary;
+    border-radius: 1rem;
+  }
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: main.$font-poppins;
+  background: main.$cream;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-family: main.$font-luckiest;
+}
+
+h1 {
+  font-size: main.$font-4xl;
+}
+
+button {
+  cursor: pointer;
+}

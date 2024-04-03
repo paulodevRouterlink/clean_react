@@ -1,0 +1,69 @@
+@use '@/presentation/scss/main.scss';
+
+.login {
+  display: flex;
+  flex-direction: main.$flex-col;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: main.$flex-col;
+
+    background: main.$black-olive;
+    border-top: main.$spacing-10 solid main.$primary;
+
+    img {
+      @include main.size(6rem);
+      margin-top: main.$spacing-10;
+    }
+
+    h1 {
+      font-weight: main.$font-semibold;
+      letter-spacing: main.$letter-space-wider;
+      color: main.$white;
+
+      margin: main.$spacing-4 0 main.$spacing-10;
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: main.$flex-col;
+    gap: main.$spacing-2;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+
+    width: main.$sizes-xl;
+
+    h2 {
+      color: main.$black-olive;
+      font-size: main.$font-3xl;
+      letter-spacing: main.$letter-space-wider;
+      text-transform: uppercase;
+    }
+
+
+    .link {
+      cursor: pointer;
+      margin-top: main.$spacing-3;
+
+      color: main.$primary;
+      font-weight: main.$font-semibold;
+
+      transition: color .2s ease-out;
+
+      &:hover {
+        color: main.$orange-web;
+      }
+    }
+  }
+
+  .footer {
+    background: main.$orange-web;
+  }
+}

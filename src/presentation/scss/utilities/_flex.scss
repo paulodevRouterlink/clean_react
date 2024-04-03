@@ -1,0 +1,81 @@
+// FLEX-DIRECTION
+$flex-row: row;
+$flex-row-reverse: row-reverse;
+$flex-col: column;
+$flex-col-reverse: column-reverse;
+
+// FLEX-WRAP
+$flex-wrap: wrap;
+$flex-wrap-reverse: wrap-reverse;
+$flex-nowrap: nowrap;
+
+// FLEX
+$flex-1: 1 1 0%;
+$flex-auto: 1 1 auto;
+$flex-initial: 0 1 auto;
+$flex-none: none;
+
+// FLEX-BASIS
+$basis-0: 0px;
+$basis-1: 0.25rem; /* 4px */
+$basis-2: 0.5rem; /* 8px */
+$basis-3: 0.75rem; /* 12px */
+$basis-4: 1rem; /* 16px */
+$basis-5: 1.25rem; /* 20px */
+$basis-6: 1.5rem; /* 24px */
+$basis-7: 1.75rem; /* 28px */
+$basis-8: 2rem; /* 32px */
+$basis-9: 2.25rem; /* 36px */
+$basis-10: 2.5rem; /* 40px */
+$basis-11: 2.75rem; /* 44px */
+$basis-12: 3rem; /* 48px */
+$basis-14: 3.5rem; /* 56px */
+$basis-16: 4rem; /* 64px */
+$basis-20: 5rem; /* 80px */
+$basis-24: 6rem; /* 96px */
+$basis-28: 7rem; /* 112px */
+$basis-32: 8rem; /* 128px */
+$basis-36: 9rem; /* 144px */
+$basis-40: 10rem; /* 160px */
+$basis-44: 11rem; /* 176px */
+$basis-48: 12rem; /* 192px */
+$basis-52: 13rem; /* 208px */
+$basis-56: 14rem; /* 224px */
+$basis-60: 15rem; /* 240px */
+$basis-64: 16rem; /* 256px */
+$basis-72: 18rem; /* 288px */
+$basis-80: 20rem; /* 320px */
+$basis-96: 24rem; /* 384px */
+$basis-auto: auto;
+$basis-px: 1px;
+$basis-0-5: 0.125rem; /* 2px */
+$basis-1-5: 0.375rem; /* 6px */
+$basis-2-5: 0.625rem; /* 10px */
+$basis-3-5: 0.875rem; /* 14px */
+$basis-1_2: 50%;
+$basis-1_3: 33.333333%;
+$basis-2_3: 66.666667%;
+$basis-1_4: 25%;
+$basis-2_4: 50%;
+$basis-3_4: 75%;
+$basis-1_5: 20%;
+$basis-2_5: 40%;
+$basis-3_5: 60%;
+$basis-4_5: 80%;
+$basis-1_6: 16.666667%;
+$basis-2_6: 33.333333%;
+$basis-3_6: 50%;
+$basis-4_6: 66.666667%;
+$basis-5_6: 83.333333%;
+$basis-1_12: 8.333333%;
+$basis-2_12: 16.666667%;
+$basis-3_12: 25%;
+$basis-4_12: 33.333333%;
+$basis-5_12: 41.666667%;
+$basis-6_12: 50%;
+$basis-7_12: 58.333333%;
+$basis-8_12: 66.666667%;
+$basis-9_12: 75%;
+$basis-10_12: 83.333333%;
+$basis-11_12: 91.666667%;
+$basis-full: 100%;
