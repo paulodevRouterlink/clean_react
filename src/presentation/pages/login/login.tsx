@@ -1,15 +1,19 @@
 import { FC } from 'react'
 import { AiOutlineLogin } from 'react-icons/ai'
-import { Button, Input } from '@/presentation/components'
+import { Button, Input } from '@/presentation/components/ui'
+import { Footer, Header } from '@/presentation/components/layout'
 import Styled from './login.module.scss'
 
 const Login: FC = () => {
   return (
     <main className={Styled.login}>
-      <header className={Styled.header}>
-        <img src="/logo.png" alt="Logotipo" />
-        <h1>4Dev - Enquete para programadores</h1>
-      </header>
+      <Header
+        props={{
+          heading: '4Dev - Enquete para programadores',
+          logo: '/logo.png',
+        }}
+      />
+
       <form className={Styled.form}>
         <h2>Login</h2>
 
@@ -34,7 +38,8 @@ const Login: FC = () => {
 
         <span className={Styled.link}>Criar conta</span>
       </form>
-      <footer className={Styled.footer} />
+
+      <Footer />
     </main>
   )
 }

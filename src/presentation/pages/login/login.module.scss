@@ -7,29 +7,6 @@
   height: 100%;
   width: 100%;
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: main.$flex-col;
-
-    background: main.$black-olive;
-    border-top: main.$spacing-10 solid main.$primary;
-
-    img {
-      @include main.size(6rem);
-      margin-top: main.$spacing-10;
-    }
-
-    h1 {
-      font-weight: main.$font-semibold;
-      letter-spacing: main.$letter-space-wider;
-      color: main.$white;
-
-      margin: main.$spacing-4 0 main.$spacing-10;
-    }
-  }
-
   .form {
     display: flex;
     flex-direction: main.$flex-col;
@@ -61,10 +38,5 @@
         color: main.$orange-web;
       }
     }
-  }
-
-  .footer {
-    background: main.$primary;
-    height: main.$spacing-10;
   }
 }
