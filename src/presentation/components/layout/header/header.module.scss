@@ -1,0 +1,24 @@
+@use '@/presentation/scss/main.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: main.$flex-col;
+
+  background: main.$black-olive;
+  border-top: main.$spacing-10 solid main.$primary;
+
+  img {
+    @include main.size(6rem);
+    margin-top: main.$spacing-10;
+  }
+
+  h1 {
+    font-weight: main.$font-semibold;
+    letter-spacing: main.$letter-space-wider;
+    color: main.$white;
+
+    margin: main.$spacing-4 0 main.$spacing-10;
+  }
+}
