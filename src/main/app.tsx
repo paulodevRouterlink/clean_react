@@ -1,7 +1,12 @@
 import { Routes } from '@/config/routes'
+import { ScrollTop } from '@/config/scroll-top'
 
-function App() {
-  return <Routes />
+const App = () => {
+  return (
+    <ScrollTop>
+      <Routes />
+    </ScrollTop>
+  )
 }
 
 export { App }
