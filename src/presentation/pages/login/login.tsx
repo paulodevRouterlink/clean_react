@@ -14,7 +14,7 @@ const Login: FC = () => {
         }}
       />
 
-      <form className={Styled.form}>
+      <form className={Styled.form} autoComplete="off">
         <h2>Login</h2>
 
         <Input
