@@ -9,7 +9,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ error, helperText, ...rest }, ref) => {
-    const enabledInput = (event: FocusEvent<HTMLInputElement>): void => {
+    const enabledInput = (event: FocusEvent<HTMLInputElement>) => {
       event.target.readOnly = false
     }
 
@@ -24,7 +24,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             [Styled.input__invalid]: error,
           })}
         />
-        {error && <span data-testid="helper-text">{helperText}</span>}
+        {error && (
+          <div data-testid="helper-text">
+            <span className={Styled.input_field__helper_text}>
+              {helperText}
+            </span>
+          </div>
+        )}
       </div>
     )
   },
