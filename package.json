@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "jest",
     "test:watch": "npm test -- --watch",
+    "test:cov": "npm test -- --coverage",
     "test:clear": "jest --clearCache"
   },
   "dependencies": {

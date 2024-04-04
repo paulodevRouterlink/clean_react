@@ -6,4 +6,5 @@ module.exports = {
     '@/(.*)': '<rootDir>/src/$1',
     '\\.scss$': 'identity-obj-proxy',
   },
+  collectCoverageFrom: ['<rootDir>/src/**/*.{js.ts.jsx.tsx}'],
 }
