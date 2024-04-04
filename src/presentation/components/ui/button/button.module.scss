@@ -36,9 +36,9 @@
   }
 
   &:disabled {
-    background-color: grey;
-    color: grey;
-    border: 0;
+    background-color: main.$disabled;
+    color: main.$black-olive;
+    border: none;
     cursor: default;
     box-shadow: none;
     transform: scale(1);

@@ -29,7 +29,7 @@ const Login: FC = () => {
             type="email"
             name="email"
             placeholder="Informe seu email"
-            error={true}
+            error={!true}
             helperText="Dados inválidos"
           />
 
@@ -39,7 +39,12 @@ const Login: FC = () => {
             placeholder="Informe sua senha"
           />
 
-          <Button sx={{ width: '40%' }} size="small">
+          <Button
+            data-testid="submit"
+            disabled
+            sx={{ width: '40%' }}
+            size="small"
+          >
             Entrar
             <AiOutlineLogin size={20} />
           </Button>

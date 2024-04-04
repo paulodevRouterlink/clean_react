@@ -64,6 +64,14 @@
       font-weight: main.$font-medium;
       color: main.$red-600;
     }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 1px main.$red-600;
+      border-color: main.$red-800;
+      border-radius: main.$rounded-xl;
+      outline: none;
+      width: main.$sizes-sm;
+    }
   }
 }
 
