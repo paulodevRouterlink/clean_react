@@ -1,7 +1,6 @@
-@use '@/presentation/scss/main.scss';
+@use '@/presentation/scss/main';
 
-
-.input__wrapper {
+.input_field {
   display: flex;
   flex-direction: main.$flex-col;
 
@@ -55,7 +54,7 @@
     }
   }
 
-  .input_invalid {
+  .input__invalid {
     box-shadow: 0 0 0 1px main.$red-800;
     border-color: main.$red-600;
     color: main.$red-600;

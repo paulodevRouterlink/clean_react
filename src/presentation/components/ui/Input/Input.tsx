@@ -1,6 +1,6 @@
 import { FocusEvent, InputHTMLAttributes, forwardRef } from 'react'
 import classNames from 'classnames'
-import styled from './input.module.scss'
+import Styled from './input.module.scss'
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: boolean
@@ -14,17 +14,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <div className={styled.input__wrapper}>
+      <div className={Styled.input_field}>
         <input
           {...rest}
+          ref={ref}
           readOnly
           onFocus={enabledInput}
-          ref={ref}
-          className={classNames(styled.input, {
-            [styled.input_invalid]: error,
+          className={classNames(Styled.input, {
+            [Styled.input__invalid]: error,
           })}
         />
-        {error && <span>{helperText}</span>}
+        {error && <span data-testid="helper-text">{helperText}</span>}
       </div>
     )
   },
