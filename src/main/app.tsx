@@ -1,7 +1,11 @@
-import { Routes } from '@/config/routes'
-import { ScrollTop } from '@/config/scroll-top'
+import { Navigate, useLocation } from 'react-router-dom'
+import { Routes, ScrollTop } from '@/config'
 
 const App = () => {
+  const { pathname } = useLocation()
+
+  if (pathname === '/') return <Navigate to="/login" />
+
   return (
     <ScrollTop>
       <Routes />
