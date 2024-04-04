@@ -5,10 +5,11 @@ import Styled from './input.module.scss'
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: boolean
   helperText?: string | undefined
+  name: string
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error, helperText, ...rest }, ref) => {
+  ({ error, helperText, name, ...rest }, ref) => {
     const enabledInput = (event: FocusEvent<HTMLInputElement>) => {
       event.target.readOnly = false
     }
@@ -18,6 +19,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           {...rest}
           ref={ref}
+          data-testid={name}
+          name={name}
           readOnly
           onFocus={enabledInput}
           className={classNames(Styled.input, {

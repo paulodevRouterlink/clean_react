@@ -2,9 +2,17 @@ import { FC } from 'react'
 import { AiOutlineLogin } from 'react-icons/ai'
 import { Button, Input } from '@/presentation/components/ui'
 import { Footer, Header } from '@/presentation/components/layout'
+import { useLogin } from './hook/useLogin'
 import Styled from './login.module.scss'
+import { IValidation } from '@/presentation/protocols/validation'
 
-const Login: FC = () => {
+type LoginProps = {
+  validation: IValidation
+}
+
+const Login: FC<LoginProps> = ({ validation }) => {
+  const { state, handleChange } = useLogin(validation)
+
   return (
     <main className={Styled.login}>
       <Header
@@ -23,6 +31,8 @@ const Login: FC = () => {
           placeholder="Informe seu email"
           error={false}
           helperText="Dados inválidos"
+          value={state.email}
+          onChange={handleChange}
         />
 
         <Input
@@ -31,6 +41,8 @@ const Login: FC = () => {
           placeholder="Informe sua senha"
           error={false}
           helperText="Dados inválidos"
+          value={state.password}
+          onChange={handleChange}
         />
 
         <Button
