@@ -1,3 +1,4 @@
+// UTILITIES
 @forward './utilities/flex';
 @forward './utilities/fonts';
 @forward './utilities/rounded';
@@ -6,4 +7,8 @@
 @forward './utilities/spacing';
 @forward './utilities/variables';
 
-@forward './components/spinner.scss';
+// SCSS COMPONENTS
+@forward './components/spinner';
+
+// FUNCTIONS
+@forward './functions/spacing';

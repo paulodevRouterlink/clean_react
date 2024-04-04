@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import Styled from './header.module.scss'
 
 type HeaderProps = {
@@ -8,7 +8,7 @@ type HeaderProps = {
   }
 }
 
-const Header: FC<HeaderProps> = ({ props: { heading, logo } }) => {
+const Head: FC<HeaderProps> = ({ props: { heading, logo } }) => {
   return (
     <header className={Styled.header}>
       <img src={logo} alt="Logotipo" />
@@ -17,4 +17,4 @@ const Header: FC<HeaderProps> = ({ props: { heading, logo } }) => {
   )
 }
 
-export { Header }
+export const Header = memo(Head)

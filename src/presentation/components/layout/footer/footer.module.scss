@@ -1,6 +1,7 @@
-@use '@/presentation/scss/main.scss';
+@use '@/presentation/scss/main';
 
 .footer {
   background: main.$primary;
+  // height: main.spacing(40px);
   height: main.$spacing-10;
 }

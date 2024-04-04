@@ -1,0 +1,12 @@
+// Definição da variável para o tamanho do root font-size
+$root-font-size: 16px; // Altere para o valor do tamanho da fonte do elemento root (normalmente 16px)
+
+// Função para converter pixels em rem, arredondando para múltiplos de 4
+@function spacing($pixels) {
+  // Calcula o valor em rem
+  $rem-value: calc($pixels / $root-font-size);
+  // Arredonda para o múltiplo de 4 mais próximo
+  $rem-value-rounded: round($rem-value / 0.25) * 0.25; // 0.25 é 1/4, que corresponde a 1 rem
+  // Retorna o valor em rem arredondado
+  @return $rem-value-rounded + rem;
+}
