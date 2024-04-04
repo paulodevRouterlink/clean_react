@@ -1,0 +1,22 @@
+@use '../utilities/fonts';
+
+$font-family-luckiest: fonts.$font-luckiest;
+
+h1 {
+  font-weight: fonts.$font-semibold;
+  font-family: $font-family-luckiest;
+  font-size: fonts.$font-4xl;
+  line-height: fonts.$leading-relaxed;
+}
+
+h2 {
+  font-weight: fonts.$font-semibold;
+  font-family: $font-family-luckiest;
+  font-size: fonts.$font-3xl;
+}
+
+h3 {
+  font-weight: fonts.$font-semibold;
+  font-family: $font-family-luckiest;
+  font-size: fonts.$font-2xl;
+}

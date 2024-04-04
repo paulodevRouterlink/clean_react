@@ -1,4 +1,4 @@
-@use './main.scss';
+@use './main';
 
 * {
   box-sizing: border-box;
@@ -29,14 +29,6 @@ body {
   background: main.$cream;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-h1, h2, h3 {
-  font-family: main.$font-luckiest;
-}
-
-h1 {
-  font-size: main.$font-4xl;
 }
 
 button {
