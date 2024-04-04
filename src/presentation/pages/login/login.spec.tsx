@@ -6,5 +6,7 @@ describe('Login Component', () => {
     const { getByTestId } = render(<Login />)
     const helperText = getByTestId('helper-text')
     expect(helperText.childElementCount).toBe(0)
+    const submitButton = getByTestId('submit') as HTMLButtonElement
+    expect(submitButton.disabled).toBe(true)
   })
 })
