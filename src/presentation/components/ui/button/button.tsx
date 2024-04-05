@@ -25,7 +25,7 @@ const Button: FC<ButtonProps> = (props) => {
       })}
     >
       {isLoading ? (
-        <span className={styled.loading}>
+        <span data-testid="spinner" className={styled.loading}>
           <span className="loader" />
           Carregando
         </span>

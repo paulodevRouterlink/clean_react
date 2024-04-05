@@ -59,6 +59,7 @@ const Login: FC<LoginProps> = ({ validation }) => {
           disabled={!!state.emailError && !!state.passwordError}
           sx={{ width: '40%' }}
           size="small"
+          isLoading={state.isLoading}
         >
           Entrar
           <AiOutlineLogin size={20} />

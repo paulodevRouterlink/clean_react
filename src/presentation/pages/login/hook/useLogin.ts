@@ -16,6 +16,7 @@ const useLogin = (validation: IValidation) => {
   })
 
   const [state, setState] = useState({
+    isLoading: true,
     email: '',
     password: '',
     emailError: '',
@@ -30,7 +31,10 @@ const useLogin = (validation: IValidation) => {
     })
   }, [state.email, state.password])
 
-  const handlerLogin = (data: LoginProps) => console.log(data)
+  const handlerLogin = (data: LoginProps) => {
+    console.log(data)
+    setState({ ...state, isLoading: true })
+  }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setState({
