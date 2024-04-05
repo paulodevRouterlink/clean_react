@@ -56,7 +56,7 @@ const Login: FC<LoginProps> = ({ validation }) => {
 
         <Button
           data-testid="submit"
-          disabled={!!errors.email?.message && !!errors.password?.message}
+          disabled={!!state.emailError && !!state.passwordError}
           sx={{ width: '40%' }}
           size="small"
         >
