@@ -2,17 +2,21 @@ import { FC } from 'react'
 import { AiOutlineLogin } from 'react-icons/ai'
 import { Button, Input } from '@/presentation/components/ui'
 import { Footer, Header } from '@/presentation/components/layout'
+import { IValidation } from '@/presentation/protocols/validation'
+import { IAuthentication } from '@/domain/usecases/auth'
 import { useLogin } from './hook/useLogin'
 import Styled from './login.module.scss'
-import { IValidation } from '@/presentation/protocols/validation'
 
-type LoginProps = {
+export type LoginPageProps = {
   validation: IValidation
+  authentication: IAuthentication
 }
 
-const Login: FC<LoginProps> = ({ validation }) => {
-  const { register, errors, handlerLogin, handleSubmit, handleChange, state } =
-    useLogin(validation)
+const Login: FC<LoginPageProps> = ({ validation, authentication }) => {
+  const { register, errors, handlerLogin, handleChange, state } = useLogin({
+    validation,
+    authentication,
+  })
 
   return (
     <main className={Styled.login}>
@@ -23,11 +27,7 @@ const Login: FC<LoginProps> = ({ validation }) => {
         }}
       />
 
-      <form
-        onSubmit={handleSubmit(handlerLogin)}
-        className={Styled.form}
-        autoComplete="off"
-      >
+      <form onSubmit={handlerLogin} className={Styled.form} autoComplete="off">
         <h2>Login</h2>
 
         <Input

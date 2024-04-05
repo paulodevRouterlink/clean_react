@@ -1,10 +1,10 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { IValidation } from '@/presentation/protocols/validation'
 import { LoginProps, schemaLogin } from '@/presentation/pages/login/schema'
+import { LoginPageProps } from '../login'
 
-const useLogin = (validation: IValidation) => {
+const useLogin = ({ validation, authentication }: LoginPageProps) => {
   const {
     register,
     handleSubmit,
@@ -31,9 +31,12 @@ const useLogin = (validation: IValidation) => {
     })
   }, [state.email, state.password])
 
-  const handlerLogin = (data: LoginProps) => {
-    console.log(data)
+  const handlerLogin = async (
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    event.preventDefault()
     setState({ ...state, isLoading: true })
+    await authentication.auth({ email: state.email, password: state.password })
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
