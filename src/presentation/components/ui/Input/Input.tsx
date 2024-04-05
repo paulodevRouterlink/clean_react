@@ -6,27 +6,37 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: boolean
   helperText?: string | undefined
   name: string
+  message?: string
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error, helperText, name, ...rest }, ref) => {
+  ({ error, helperText, name, message, ...rest }, ref) => {
     const enabledInput = (event: FocusEvent<HTMLInputElement>) => {
       event.target.readOnly = false
     }
 
+    const getStatus = () => '🔴'
+
     return (
       <div className={Styled.input_field}>
-        <input
-          {...rest}
-          ref={ref}
-          data-testid={name}
-          name={name}
-          readOnly
-          onFocus={enabledInput}
-          className={classNames(Styled.input, {
-            [Styled.input__invalid]: error,
-          })}
-        />
+        <div className={Styled.input_field__wrap}>
+          <input
+            {...rest}
+            ref={ref}
+            data-testid={name}
+            id={name}
+            name={name}
+            readOnly
+            onFocus={enabledInput}
+            className={classNames(Styled.input, {
+              [Styled.input__invalid]: error,
+            })}
+          />
+          <span title={message} data-testid={`${name}-status`}>
+            {getStatus()}
+          </span>
+        </div>
+
         {error && (
           <div data-testid="helper-text">
             <span className={Styled.input_field__helper_text}>

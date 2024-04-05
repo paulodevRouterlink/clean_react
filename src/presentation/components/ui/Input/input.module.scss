@@ -10,6 +10,12 @@
     color: main.$red-600;
   }
 
+  &__wrap {
+    > span {
+      cursor: help;
+    }
+  }
+
   .input {
     border: 2px solid main.$black-olive;
     border-radius: main.$rounded-md;

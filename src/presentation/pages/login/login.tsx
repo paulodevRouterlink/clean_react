@@ -11,7 +11,8 @@ type LoginProps = {
 }
 
 const Login: FC<LoginProps> = ({ validation }) => {
-  const { state, handleChange } = useLogin(validation)
+  const { register, errors, handlerLogin, handleSubmit, handleChange, state } =
+    useLogin(validation)
 
   return (
     <main className={Styled.login}>
@@ -22,32 +23,40 @@ const Login: FC<LoginProps> = ({ validation }) => {
         }}
       />
 
-      <form className={Styled.form} autoComplete="off">
+      <form
+        onSubmit={handleSubmit(handlerLogin)}
+        className={Styled.form}
+        autoComplete="off"
+      >
         <h2>Login</h2>
 
         <Input
+          {...register('email')}
           type="email"
           name="email"
           placeholder="Informe seu email"
-          error={false}
-          helperText="Dados inválidos"
-          value={state.email}
+          error={!!errors.email?.message}
+          helperText={errors.email?.message}
           onChange={handleChange}
+          value={state.email}
+          message={state.emailError}
         />
 
         <Input
+          {...register('password')}
           type="password"
           name="password"
           placeholder="Informe sua senha"
-          error={false}
-          helperText="Dados inválidos"
-          value={state.password}
+          error={!!errors.password?.message}
+          helperText={errors.password?.message}
           onChange={handleChange}
+          value={state.password}
+          message={state.passwordError}
         />
 
         <Button
           data-testid="submit"
-          disabled
+          disabled={!!errors.email?.message && !!errors.password?.message}
           sx={{ width: '40%' }}
           size="small"
         >

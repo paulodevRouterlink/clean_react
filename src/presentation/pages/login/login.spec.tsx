@@ -15,6 +15,7 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const validationSpy = new ValidationSpy()
+  validationSpy.errorMessage = faker.word.words()
   const sut = render(<Login validation={validationSpy} />)
   return { sut, validationSpy }
 }
@@ -22,11 +23,17 @@ const makeSut = (): SutTypes => {
 describe('Login Component', () => {
   afterEach(cleanup)
   test('Should start initial state', () => {
-    const { sut } = makeSut()
+    const { sut, validationSpy } = makeSut()
     const helperText = sut.queryByTestId('helper-text')
     expect(helperText).toBeNull()
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement
-    expect(submitButton.disabled).toBe(true)
+    expect(submitButton.disabled).toBe(false)
+    const emailStatus = sut.getByTestId('email-status')
+    expect(emailStatus.title).toBe(validationSpy.errorMessage)
+    expect(emailStatus.textContent).toBe('🔴')
+    const passwordStatus = sut.getByTestId('password-status')
+    expect(passwordStatus.title).toBe('Campo Obrigatório')
+    expect(passwordStatus.textContent).toBe('🔴')
   })
 
   test('Should call validation with correct email', () => {
@@ -41,9 +48,18 @@ describe('Login Component', () => {
   test('Should call validation with correct password', () => {
     const { sut, validationSpy } = makeSut()
     const passwordInput = sut.getByTestId('password')
-    const password = faker.internet.email()
+    const password = faker.string.uuid()
     fireEvent.input(passwordInput, { target: { value: password } })
     expect(validationSpy.fieldName).toBe('password')
     expect(validationSpy.fieldValue).toBe(password)
+  })
+
+  test('Should show email Validation if error failed', () => {
+    const { sut, validationSpy } = makeSut()
+    const emailInput = sut.getByTestId('email')
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    const emailStatus = sut.getByTestId('email-status')
+    expect(emailStatus.title).toBe(validationSpy.errorMessage)
+    expect(emailStatus.textContent).toBe('🔴')
   })
 })

@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom'
-import { Routes, ScrollTop } from '@/config'
+import { Routes } from '@/main/routes'
+import { ScrollTop } from '@/main/scroll-top'
 
 const App = () => {
   const { pathname } = useLocation()

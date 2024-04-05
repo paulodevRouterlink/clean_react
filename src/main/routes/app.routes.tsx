@@ -1,12 +1,12 @@
 import { RouteObject } from 'react-router-dom'
 import { Login } from '@/presentation/pages'
-import { ValidationSpy } from '@/presentation/protocols/validation'
+import { ValidationSpy } from '@/presentation/test'
 
-const validation = (): ValidationSpy => new ValidationSpy()
+const validationSpy = new ValidationSpy()
 
 const appRoutes = (): RouteObject => ({
   path: '/login',
-  element: <Login validation={validation()} />,
+  element: <Login validation={validationSpy} />,
 })
 
 export { appRoutes }
