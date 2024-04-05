@@ -15,7 +15,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       event.target.readOnly = false
     }
 
-    const getStatus = () => '🔴'
+    const getStatus = (): string => (message ? '🔴' : '🟢')
+    const getError = (): string => message || 'Tudo certo!'
 
     return (
       <div className={Styled.input_field}>
@@ -32,7 +33,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               [Styled.input__invalid]: error,
             })}
           />
-          <span title={message} data-testid={`${name}-status`}>
+          <span title={getError()} data-testid={`${name}-status`}>
             {getStatus()}
           </span>
         </div>
