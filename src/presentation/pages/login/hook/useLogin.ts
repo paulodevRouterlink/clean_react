@@ -19,19 +19,16 @@ const useLogin = (validation: IValidation) => {
     email: '',
     password: '',
     emailError: '',
-    passwordError: 'Campo Obrigatório',
+    passwordError: '',
   })
 
   useEffect(() => {
     setState({
       ...state,
       emailError: validation.validade('email', state.email),
+      passwordError: validation.validade('password', state.password),
     })
-  }, [state.email])
-
-  useEffect(() => {
-    validation.validade('password', state.password)
-  }, [state.password, validation])
+  }, [state.email, state.password])
 
   const handlerLogin = (data: LoginProps) => console.log(data)
 

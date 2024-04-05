@@ -1,13 +1,10 @@
 import { IValidation } from '@/presentation/protocols/validation'
 
-export class ValidationSpy implements IValidation {
+export class ValidationStub implements IValidation {
   errorMessage: string
-  fieldName: string
-  fieldValue: string
 
   validade(fieldName: string, fieldValue: string): string {
-    this.fieldName = fieldName
-    this.fieldValue = fieldValue
+    console.log(fieldName, fieldValue)
     return this.errorMessage
   }
 }
