@@ -15,8 +15,12 @@ const useLogin = (validation: IValidation) => {
   }
 
   useEffect(() => {
-    validation.validade({ email: state.email, password: state.password })
-  }, [validation, state.email, state.password])
+    validation.validade('email', state.email)
+  }, [validation, state.email])
+
+  useEffect(() => {
+    validation.validade('password', state.password)
+  }, [validation, state.password])
 
   return { state, handleChange }
 }

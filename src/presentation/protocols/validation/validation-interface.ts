@@ -1,3 +1,3 @@
 export interface IValidation {
-  validade(input: object): string
+  validade(fieldName: string, fieldValue: string): string
 }

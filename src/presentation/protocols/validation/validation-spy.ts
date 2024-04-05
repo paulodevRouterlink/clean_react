@@ -2,10 +2,12 @@ import { IValidation } from './validation-interface'
 
 export class ValidationSpy implements IValidation {
   errorMessage: string
-  input: object
+  fieldName: string
+  fieldValue: string
 
-  validade(input: object): string {
-    this.input = input
+  validade(fieldName: string, fieldValue: string): string {
+    this.fieldName = fieldName
+    this.fieldValue = fieldValue
     return this.errorMessage
   }
 }
