@@ -1,4 +1,4 @@
-import { IValidation } from './validation-interface'
+import { IValidation } from '@/presentation/protocols/validation'
 
 export class ValidationSpy implements IValidation {
   errorMessage: string

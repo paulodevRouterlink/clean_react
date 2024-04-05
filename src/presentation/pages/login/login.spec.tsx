@@ -5,7 +5,7 @@ import {
   cleanup,
 } from '@testing-library/react'
 import { Login } from './login'
-import { ValidationSpy } from '@/presentation/protocols/validation'
+import { ValidationSpy } from '@/presentation/test'
 
 type SutTypes = {
   sut: RenderResult
