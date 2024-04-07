@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom'
 import { Login } from '@/presentation/pages'
-import { adapterLogin } from '@/main/adapters/adapter-props'
+import { adapterLogin } from '@/main/adapters'
 
 const { authentication, validation } = adapterLogin()
 
