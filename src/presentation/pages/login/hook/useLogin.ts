@@ -36,7 +36,7 @@ const useLogin = ({ validation, authentication }: LoginPageProps) => {
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault()
-    if (state.isLoading) {
+    if (state.isLoading || state.emailError || state.passwordError) {
       return
     }
     setState({ ...state, isLoading: true })
