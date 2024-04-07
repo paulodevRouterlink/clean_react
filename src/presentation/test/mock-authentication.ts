@@ -1,13 +1,15 @@
 import { AccountModel } from '@/domain/models'
 import { mockAccountModel } from '@/domain/test'
-import { AuthParams, IAuthentication } from '@/domain/usecases/auth'
+import { AuthenticationParams, IAuthentication } from '@/domain/usecases/auth'
 
 export class AuthenticationSpy implements IAuthentication {
   account = mockAccountModel()
-  params: AuthParams
+  params: AuthenticationParams
+  callsCount = 0
 
-  async auth(params: AuthParams): Promise<AccountModel> {
+  async auth(params: AuthenticationParams): Promise<AccountModel> {
     this.params = params
+    this.callsCount++
     return Promise.resolve(this.account)
   }
 }
