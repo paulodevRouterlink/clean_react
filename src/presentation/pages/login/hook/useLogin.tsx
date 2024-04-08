@@ -1,26 +1,14 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { LoginProps, schemaLogin } from '@/presentation/pages/login/schema'
 import { LoginPageProps } from '../login'
 
 const useLogin = ({ validation, authentication }: LoginPageProps) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginProps>({
-    mode: 'all',
-    reValidateMode: 'onChange',
-    resolver: zodResolver(schemaLogin),
-  })
-
   const [state, setState] = useState({
     isLoading: false,
     email: '',
     password: '',
     emailError: '',
     passwordError: '',
+    mainError: '',
   })
 
   useEffect(() => {
@@ -36,9 +24,21 @@ const useLogin = ({ validation, authentication }: LoginPageProps) => {
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault()
-    if (state.isLoading || state.emailError || state.passwordError) return
-    setState({ ...state, isLoading: true })
-    await authentication.auth({ email: state.email, password: state.password })
+
+    try {
+      if (state.isLoading || state.emailError || state.passwordError) return
+      setState({ ...state, isLoading: true })
+      await authentication.auth({
+        email: state.email,
+        password: state.password,
+      })
+    } catch (error) {
+      setState({
+        ...state,
+        isLoading: false,
+        mainError: error.message,
+      })
+    }
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +48,7 @@ const useLogin = ({ validation, authentication }: LoginPageProps) => {
     })
   }
 
-  return { register, handleSubmit, errors, state, handlerLogin, handleChange }
+  return { state, handlerLogin, handleChange }
 }
 
 export { useLogin }
