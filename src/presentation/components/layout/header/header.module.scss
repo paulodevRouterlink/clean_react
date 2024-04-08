@@ -15,6 +15,7 @@
   }
 
   h1 {
+    @include main.h1;
     letter-spacing: main.$letter-space-wider;
     color: main.$white;
 

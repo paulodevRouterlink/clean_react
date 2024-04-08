@@ -1,0 +1,8 @@
+@use '@/presentation/scss/main';
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: main.$spacing-2;
+}
