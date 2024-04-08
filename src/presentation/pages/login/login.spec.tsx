@@ -1,8 +1,8 @@
 import {
-  RenderResult,
-  render,
-  fireEvent,
   cleanup,
+  fireEvent,
+  render,
+  RenderResult,
 } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 import { Login } from './login'
@@ -130,5 +130,20 @@ describe('Login Component', () => {
       email,
       password,
     })
+  })
+
+  test('Should call Authentication only once', () => {
+    const { sut, authenticationSpy } = makeSut()
+    simulateValidSubmit(sut)
+    simulateValidSubmit(sut)
+    expect(authenticationSpy.callsCount).toBe(1)
+  })
+
+  test('Should call Authentication only once', () => {
+    const validationError = faker.word.words()
+    const { sut, authenticationSpy } = makeSut({ validationError })
+    populateEmailField(sut)
+    fireEvent.submit(sut.getByTestId('form'))
+    expect(authenticationSpy.callsCount).toBe(0)
   })
 })

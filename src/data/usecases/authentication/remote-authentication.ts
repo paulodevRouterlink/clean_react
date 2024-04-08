@@ -1,4 +1,8 @@
-import { AuthParams, IAuthentication } from '@/domain/usecases/auth/auth'
+/* eslint-disable prettier/prettier */
+import {
+  AuthenticationParams as AuthParams,
+  IAuthentication,
+} from '@/domain/usecases/auth/auth'
 import { HttpPostClient, HttpStatusCode } from '@/data/protocols/http'
 import { AccountModel } from '@/domain/models/account-models'
 import { Errors } from '@/domain/errors'
@@ -7,7 +11,7 @@ export class RemoteAuthentication implements IAuthentication {
   constructor(
     private readonly url: string,
     private readonly httpPostClient: HttpPostClient<AuthParams, AccountModel>,
-  ) {}
+  ) { }
 
   async auth(params: AuthParams): Promise<AccountModel> {
     const httpResponse = await this.httpPostClient.post({

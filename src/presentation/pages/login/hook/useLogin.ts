@@ -29,12 +29,16 @@ const useLogin = ({ validation, authentication }: LoginPageProps) => {
       emailError: validation.validade('email', state.email),
       passwordError: validation.validade('password', state.password),
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.email, state.password])
 
   const handlerLogin = async (
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault()
+    if (state.isLoading || state.emailError || state.passwordError) {
+      return
+    }
     setState({ ...state, isLoading: true })
     await authentication.auth({ email: state.email, password: state.password })
   }
