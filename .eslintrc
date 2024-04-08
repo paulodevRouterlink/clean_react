@@ -23,34 +23,6 @@
         "args": "after-used",
         "argsIgnorePattern": "^_"
       }
-    ],
-    "sort-imports": [
-      "error",
-      {
-        "ignoreCase": true,
-        "ignoreDeclarationSort": true,
-        "ignoreMemberSort": false
-      }
-    ],"import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal"
-        ],
-        "pathGroups": [
-          {
-            "pattern": "react",
-            "group": "builtin",
-            "position": "before"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": [
-          "react"
-        ]
-      }
     ]
-
   }
 }

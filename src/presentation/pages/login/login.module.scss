@@ -19,7 +19,7 @@
 
     h2 {
       @include main.h2;
-      color: main.$black-olive;
+      color: main.$dark;
       font-size: main.$font-3xl;
       letter-spacing: main.$letter-space-wider;
       text-transform: uppercase;
@@ -36,7 +36,7 @@
       transition: color .2s ease-out;
 
       &:hover {
-        color: main.$orange-web;
+        color: main.$warning;
       }
     }
   }
