@@ -18,6 +18,7 @@
     width: main.$sizes-xl;
 
     h2 {
+      @include main.h2;
       color: main.$black-olive;
       font-size: main.$font-3xl;
       letter-spacing: main.$letter-space-wider;
