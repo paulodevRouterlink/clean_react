@@ -22,7 +22,12 @@ const Login: FC<LoginPageProps> = ({ validation, authentication }) => {
     <main className={Styled.login}>
       <Header />
 
-      <form onSubmit={handlerLogin} className={Styled.form} autoComplete="off">
+      <form
+        data-testid="form"
+        onSubmit={handlerLogin}
+        className={Styled.form}
+        autoComplete="off"
+      >
         <h2>Login</h2>
 
         <Input
