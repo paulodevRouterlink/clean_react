@@ -5,7 +5,7 @@
     "react-refresh"
   ],
   "rules": {
-    "@typescript-eslint/no-namespace":"off",
+    "@typescript-eslint/no-namespace": "off",
     "no-useless-constructor": "off",
     "react-refresh/only-export-components": [
       "warn",
