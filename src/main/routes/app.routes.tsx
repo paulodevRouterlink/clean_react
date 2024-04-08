@@ -9,4 +9,9 @@ const appRoutes = (): RouteObject => ({
   element: <Login validation={validation} authentication={authentication} />,
 })
 
-export { appRoutes }
+const signUp = (): RouteObject => ({
+  path: '/sign-up',
+  element: <h1>sign-up</h1>,
+})
+
+export { appRoutes, signUp }

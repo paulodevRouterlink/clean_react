@@ -24,9 +24,11 @@ const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
   validationStub.errorMessage = params?.validationError
+
   const sut = render(
     <Login validation={validationStub} authentication={authenticationSpy} />,
   )
+
   return {
     sut,
     authenticationSpy,
