@@ -1,8 +1,8 @@
 import {
-  HttpStatusCode,
-  HttpResponse,
   HttpPostClient,
   HttpPostParams,
+  HttpResponse,
+  HttpStatusCode,
 } from './../protocols/http'
 
 export class HttpPostClientSpy<T, R> implements HttpPostClient<T, R> {
