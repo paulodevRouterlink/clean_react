@@ -114,7 +114,7 @@ describe('Login Component', () => {
     expect(submitButton.disabled).toBe(false)
   })
 
-  test('Should show spinner', () => {
+  test('Should show spinner on submit', () => {
     const { sut } = makeSut()
     simulateValidSubmit(sut)
     const spinner = sut.getByTestId('spinner')
