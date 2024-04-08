@@ -20,12 +20,7 @@ const Login: FC<LoginPageProps> = ({ validation, authentication }) => {
 
   return (
     <main className={Styled.login}>
-      <Header
-        props={{
-          heading: '4Dev - Enquete para programadores',
-          logo: '/logo.png',
-        }}
-      />
+      <Header />
 
       <form onSubmit={handlerLogin} className={Styled.form} autoComplete="off">
         <h2>Login</h2>
