@@ -39,11 +39,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error && (
-          <div data-testid="helper-text">
-            <span className={Styled.input_field__helper_text}>
-              {helperText}
-            </span>
-          </div>
+          <span className={Styled.input_field__helper_text}>{helperText}</span>
         )}
       </div>
     )

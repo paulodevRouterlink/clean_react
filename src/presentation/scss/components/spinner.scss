@@ -1,6 +1,6 @@
 @use '../utilities/colors';
 
-.loader {
+.spinner {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -13,7 +13,7 @@
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 2px solid colors.$secondary;
+    border: 2px solid colors.$black-olive;
     animation: prixClipFix 2s linear infinite ;
   }
 
