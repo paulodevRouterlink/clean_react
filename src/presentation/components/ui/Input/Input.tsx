@@ -1,4 +1,4 @@
-import { FocusEvent, InputHTMLAttributes, forwardRef } from 'react'
+import { FocusEvent, forwardRef, InputHTMLAttributes } from 'react'
 import classNames from 'classnames'
 import Styled from './input.module.scss'
 
@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     const getStatus = (): string => (message ? '🔴' : '🟢')
-    const getError = (): string => message || 'Tudo certo!'
+    const getError = (): string => message || 'Tudo Certo!'
 
     return (
       <div className={Styled.input_field}>
