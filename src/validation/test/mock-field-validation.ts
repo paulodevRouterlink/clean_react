@@ -1,3 +1,5 @@
+/* eslint-disable unused-imports/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IFieldValidation } from '@/validation/protocols'
 
 export class FieldValidationSpy implements IFieldValidation {

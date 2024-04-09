@@ -1,6 +1,6 @@
 import { IFieldValidation } from '@/validation/protocols'
 import { ValidateError } from '@/validation/errors'
-import { Regex } from '../regex'
+import { Regex } from '@/validation/validators'
 
 export class EmailValidation implements IFieldValidation {
   constructor(readonly field: string) {}
