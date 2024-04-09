@@ -5,6 +5,6 @@ export class RequiredFieldValidation implements IFieldValidation {
   constructor(readonly field: string) {}
 
   validate(value: string): Error {
-    return new RequiredError.FieldError()
+    return value ? null : new RequiredError.FieldError()
   }
 }
