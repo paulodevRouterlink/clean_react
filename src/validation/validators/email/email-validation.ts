@@ -6,8 +6,7 @@ export class EmailValidation implements IFieldValidation {
   constructor(readonly field: string) {}
 
   validate(value: string): Error {
-    return Regex.validateEmail(value)
-      ? null
-      : new ValidateError.InvalidFieldError()
+    const emailRegex = Regex.validateEmail(value)
+    return !value || emailRegex ? null : new ValidateError.InvalidFieldError()
   }
 }
