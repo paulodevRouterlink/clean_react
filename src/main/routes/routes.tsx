@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router-dom'
 import { appRoutes, signUp } from './app.routes'
-import { makeLogin } from '../factory'
+import { makeLogin } from '@/main/factory/pages'
 
 const Routes = () => {
   const mainRoutes = appRoutes({ makeLogin })

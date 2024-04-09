@@ -1,9 +1,11 @@
 import { FC } from 'react'
 import { Login } from '@/presentation/pages'
-import { adapterLogin } from '@/main/adapters'
+import { makeRemoteAuthentication } from '@/main/factory/usecases'
+import { makeLoginValidate } from './login-validate-factory'
 
-export const makeLogin: FC = () => {
-  const { authentication, validation } = adapterLogin()
-
-  return <Login validation={validation} authentication={authentication} />
-}
+export const makeLogin: FC = () => (
+  <Login
+    validation={makeLoginValidate()}
+    authentication={makeRemoteAuthentication()}
+  />
+)
