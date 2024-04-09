@@ -8,6 +8,8 @@ export class MinLengthValidation implements IFieldValidation {
   ) {}
 
   validate(value: string): Error {
-    return new ValidateError.InvalidFieldError()
+    return value.length >= this.minLength
+      ? null
+      : new ValidateError.InvalidFieldError()
   }
 }
