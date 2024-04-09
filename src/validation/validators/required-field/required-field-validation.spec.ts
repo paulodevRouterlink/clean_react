@@ -1,4 +1,4 @@
-import { RequiredError } from '@/validation/errors'
+import { ValidateError } from '@/validation/errors'
 import { RequiredFieldValidation } from './required-field-validation'
 import { faker } from '@faker-js/faker'
 
@@ -7,7 +7,7 @@ describe('Required Field Validation', () => {
   test('Should return error if field is empty', () => {
     const sut = makeSut()
     const error = sut.validate('')
-    expect(error).toEqual(new RequiredError.FieldError())
+    expect(error).toEqual(new ValidateError.RequiredFieldError())
   })
 
   test('Should return error if field is not empty', () => {
