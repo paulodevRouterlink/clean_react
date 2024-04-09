@@ -38,6 +38,8 @@ const Login: FC<LoginPageProps> = ({ validation, authentication }) => {
             onChange={handleChange}
             value={state.email}
             message={state.emailError}
+            error={!!state.emailError}
+            helperText={state.emailError}
           />
 
           <Input
@@ -47,6 +49,8 @@ const Login: FC<LoginPageProps> = ({ validation, authentication }) => {
             onChange={handleChange}
             value={state.password}
             message={state.passwordError}
+            error={!!state.passwordError}
+            helperText={state.passwordError}
           />
 
           <Button
