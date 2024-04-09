@@ -7,4 +7,11 @@ module.exports = {
     '\\.scss$': 'identity-obj-proxy',
   },
   collectCoverageFrom: ['<rootDir>/src/**/*.{js.ts.jsx.tsx}'],
+  coverageDirectory: 'coverage',
+  // transform: {
+  //   '.+\\.(ts|tsx)$': 'ts-jest',
+  // },
+  // transform: {
+  //   '\\.[jt]sx?$': 'babel-jest',
+  // },
 }
