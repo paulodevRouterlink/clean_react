@@ -5,15 +5,19 @@ import {
   RenderResult,
   waitFor,
 } from '@testing-library/react'
-import 'jest-localstorage-mock'
 import { faker } from '@faker-js/faker'
 import { Login } from '@/presentation/pages'
-import { AuthenticationSpy, ValidationStub } from '@/presentation/test'
+import {
+  AuthenticationSpy,
+  SaveAccessTokenMock,
+  ValidationStub,
+} from '@/presentation/test'
 import { Errors } from '@/domain/errors'
 
 type SutTypes = {
   sut: RenderResult
   authenticationSpy: AuthenticationSpy
+  saveAccessTokenMock: SaveAccessTokenMock
 }
 
 type SutParams = {
@@ -23,15 +27,21 @@ type SutParams = {
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
+  const saveAccessTokenMock = new SaveAccessTokenMock()
   validationStub.errorMessage = params?.validationError
 
   const sut = render(
-    <Login validation={validationStub} authentication={authenticationSpy} />,
+    <Login
+      validation={validationStub}
+      authentication={authenticationSpy}
+      saveAccessToken={saveAccessTokenMock}
+    />,
   )
 
   return {
     sut,
     authenticationSpy,
+    saveAccessTokenMock,
   }
 }
 
@@ -102,10 +112,6 @@ const testElementText = (
 
 describe('Login Component', () => {
   afterEach(cleanup)
-
-  beforeEach(() => {
-    localStorage.clear()
-  })
 
   test('Should start initial state', () => {
     const validationError = faker.word.words()
@@ -191,12 +197,11 @@ describe('Login Component', () => {
     expect(errorWrap.childElementCount).toBe(1)
   })
 
-  test('Should add accessToken to local-storage on success', async () => {
-    const { sut, authenticationSpy } = makeSut()
+  test('Should call SaveAccessToken on success', async () => {
+    const { sut, authenticationSpy, saveAccessTokenMock } = makeSut()
     simulateValidSubmit(sut)
     await waitFor(() => sut.getByTestId('form'))
-    expect(localStorage.setItem).toHaveBeenCalledWith(
-      'accessToken',
+    expect(saveAccessTokenMock.accessToken).toBe(
       authenticationSpy.account.accessToken,
     )
   })
