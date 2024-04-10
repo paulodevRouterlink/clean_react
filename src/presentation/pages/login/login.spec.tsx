@@ -7,7 +7,7 @@ import {
 } from '@testing-library/react'
 import 'jest-localstorage-mock'
 import { faker } from '@faker-js/faker'
-import { Login } from './login'
+import { Login } from '@/presentation/pages'
 import { AuthenticationSpy, ValidationStub } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
 
