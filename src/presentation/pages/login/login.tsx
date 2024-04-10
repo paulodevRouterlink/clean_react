@@ -3,7 +3,7 @@ import { AiOutlineLogin } from 'react-icons/ai'
 import { Button, FormStatus, Input } from '@/presentation/components/ui'
 import { Footer, Header } from '@/presentation/components/layout'
 import { IValidation } from '@/presentation/protocols/validation'
-import { IAuthentication } from '@/domain/usecases/auth'
+import { IAuthentication, ISaveAccessToken } from '@/domain/usecases'
 import { useLogin } from './hook/useLogin'
 import Styled from './login.module.scss'
 import { FormContext } from '@/presentation/contexts/form'
@@ -11,12 +11,18 @@ import { FormContext } from '@/presentation/contexts/form'
 export type LoginPageProps = {
   validation: IValidation
   authentication: IAuthentication
+  saveAccessToken: ISaveAccessToken
 }
 
-const Login: FC<LoginPageProps> = ({ validation, authentication }) => {
+const Login: FC<LoginPageProps> = ({
+  validation,
+  authentication,
+  saveAccessToken,
+}) => {
   const { handlerLogin, handleChange, state } = useLogin({
     validation,
     authentication,
+    saveAccessToken,
   })
 
   return (

@@ -1,7 +1,11 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { LoginPageProps } from '../login'
 
-const useLogin = ({ validation, authentication }: LoginPageProps) => {
+const useLogin = ({
+  validation,
+  authentication,
+  saveAccessToken,
+}: LoginPageProps) => {
   const [state, setState] = useState({
     isLoading: false,
     email: '',
@@ -32,7 +36,7 @@ const useLogin = ({ validation, authentication }: LoginPageProps) => {
         email: state.email,
         password: state.password,
       })
-      localStorage.setItem('accessToken', account.accessToken)
+      await saveAccessToken.save(account.accessToken)
     } catch (error) {
       setState({
         ...state,
