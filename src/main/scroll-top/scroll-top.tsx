@@ -12,7 +12,7 @@ const ScrollTop = ({ children }: { children: ReactNode }) => {
     })
   }, [pathname])
 
-  return <>{children}</>
+  return children || null
 }
 
 export { ScrollTop }
