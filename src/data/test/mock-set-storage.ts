@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ISetStorage } from '@/data/protocols/cache'
 
-export class SetStorageSpy implements ISetStorage {
+export class SetStorageMock implements ISetStorage {
   key: string
   value: any
 
