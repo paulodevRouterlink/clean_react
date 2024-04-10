@@ -205,4 +205,17 @@ describe('Login Component', () => {
       authenticationSpy.account.accessToken,
     )
   })
+
+  test.skip('Should prevent error if SaveAccessToken fails', async () => {
+    const { sut, saveAccessTokenMock } = makeSut()
+    const error = new Errors.InvalidCredentialError()
+    jest
+      .spyOn(saveAccessTokenMock, 'save')
+      .mockReturnValueOnce(Promise.reject(error))
+    simulateValidSubmit(sut)
+    const errorWrap = sut.getByTestId('error-wrap')
+    await waitFor(() => errorWrap)
+    testElementText(sut, 'main-error', error.message)
+    expect(errorWrap.childElementCount).toBe(1)
+  })
 })
