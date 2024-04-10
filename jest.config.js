@@ -7,7 +7,7 @@ module.exports = {
     '!<rootDir>/src/main/**/*',
     '!**/*.d.ts',
   ],
-  coverageDirectory: 'coverage',
+  coverageDirectory: '.coverage',
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
     '\\.scss$': 'identity-obj-proxy',
