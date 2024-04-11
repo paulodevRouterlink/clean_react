@@ -1,11 +1,12 @@
 import { RenderResult, cleanup, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { SignUp } from './sign-up'
-import { Helper, ValidationStub } from '@/presentation/test'
+import { AddAccountSpy, Helper, ValidationStub } from '@/presentation/test'
 import { faker } from '@faker-js/faker'
 
 type SutTypes = {
   sut: RenderResult
+  addAccountSpy: AddAccountSpy
 }
 
 type SutParams = {
@@ -15,13 +16,14 @@ type SutParams = {
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
+  const addAccountSpy = new AddAccountSpy()
   const sut = render(
     <BrowserRouter>
-      <SignUp validation={validationStub} />
+      <SignUp validation={validationStub} addAccount={addAccountSpy} />
     </BrowserRouter>,
   )
 
-  return { sut }
+  return { sut, addAccountSpy }
 }
 
 describe('SignUp Component', () => {
@@ -101,5 +103,19 @@ describe('SignUp Component', () => {
     makeSut()
     await Helper.simulateValidSubmit()
     Helper.testElementExists('spinner')
+  })
+
+  test('Should call AddAccount with correct values', async () => {
+    const { addAccountSpy } = makeSut()
+    const name = faker.internet.userName()
+    const email = faker.internet.email()
+    const password = faker.internet.password()
+    await Helper.simulateValidSubmit(name, email, password)
+    expect(addAccountSpy.params).toEqual({
+      name,
+      email,
+      password,
+      passwordConfirmation: password,
+    })
   })
 })
