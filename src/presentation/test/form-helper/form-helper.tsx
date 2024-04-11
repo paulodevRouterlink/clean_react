@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker'
 import { fireEvent, screen } from '@testing-library/react'
+import { faker } from '@faker-js/faker'
 
 const testChildCount = (fieldName: string, count: number) => {
   const el = screen.getByTestId(fieldName)
