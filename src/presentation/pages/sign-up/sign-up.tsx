@@ -49,7 +49,12 @@ const SignUp: FC<Props> = ({ validation }) => {
 
         <Button
           data-testid="submit"
-          disabled
+          disabled={
+            !!state.nameError &&
+            !!state.emailError &&
+            !!state.passwordError &&
+            !!state.passwordConfirmationError
+          }
           sx={{ width: '40%' }}
           size="small"
         >
