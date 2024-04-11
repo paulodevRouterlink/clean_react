@@ -125,4 +125,12 @@ describe('SignUp Component', () => {
     await Helper.simulateValidSubmit()
     expect(addAccountSpy.callsCount).toEqual(1)
   })
+
+  test('Should not call AddAccount if form is invalid', async () => {
+    const validationError = faker.word.words()
+    const { addAccountSpy } = makeSut({ validationError })
+    Helper.populateField('email')
+    await Helper.simulateValidSubmit()
+    expect(addAccountSpy.callsCount).toEqual(0)
+  })
 })
