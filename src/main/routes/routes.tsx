@@ -5,7 +5,7 @@ import { makeLogin } from '@/main/factory/pages'
 const Routes = () => {
   const mainRoutes = appRoutes({ makeLogin })
 
-  return useRoutes(mainRoutes)
+  return useRoutes([mainRoutes])
 }
 
 export { Routes }

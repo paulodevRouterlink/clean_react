@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { LoginPageProps } from '../login'
 
 const useLogin = ({
@@ -14,6 +15,7 @@ const useLogin = ({
     passwordError: '',
     mainError: '',
   })
+  const navigate = useNavigate()
 
   useEffect(() => {
     setState({
@@ -23,6 +25,8 @@ const useLogin = ({
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.email, state.password])
+
+  const handlerNavigate = () => navigate('/signup')
 
   const handlerLogin = async (
     event: FormEvent<HTMLFormElement>,
@@ -53,7 +57,7 @@ const useLogin = ({
     })
   }
 
-  return { state, handlerLogin, handleChange }
+  return { state, handlerLogin, handleChange, handlerNavigate }
 }
 
 export { useLogin }

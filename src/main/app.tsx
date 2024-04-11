@@ -5,7 +5,7 @@ import { ScrollTop } from '@/main/scroll-top'
 const App = () => {
   const { pathname } = useLocation()
 
-  if (pathname === '/') return <Navigate to="/login" />
+  if (pathname === '/') return <Navigate to="/signin" />
 
   return (
     <ScrollTop>
