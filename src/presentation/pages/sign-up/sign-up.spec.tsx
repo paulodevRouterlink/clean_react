@@ -1,19 +1,18 @@
-import {
-  RenderResult,
-  cleanup,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { SignUp } from './sign-up'
-import { AddAccountSpy, Helper, ValidationStub } from '@/presentation/test'
+import {
+  AddAccountSpy,
+  Helper,
+  SaveAccessTokenMock,
+  ValidationStub,
+} from '@/presentation/test'
 import { faker } from '@faker-js/faker'
 import { Errors } from '@/domain/errors'
 
 type SutTypes = {
-  sut: RenderResult
   addAccountSpy: AddAccountSpy
+  saveAccessTokenMock: SaveAccessTokenMock
 }
 
 type SutParams = {
@@ -24,13 +23,18 @@ const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
   const addAccountSpy = new AddAccountSpy()
-  const sut = render(
+  const saveAccessTokenMock = new SaveAccessTokenMock()
+  render(
     <BrowserRouter>
-      <SignUp validation={validationStub} addAccount={addAccountSpy} />
+      <SignUp
+        validation={validationStub}
+        addAccount={addAccountSpy}
+        saveAccessToken={saveAccessTokenMock}
+      />
     </BrowserRouter>,
   )
 
-  return { sut, addAccountSpy }
+  return { addAccountSpy, saveAccessTokenMock }
 }
 
 describe('SignUp Component', () => {
@@ -150,5 +154,14 @@ describe('SignUp Component', () => {
     await waitFor(() => errorWrap)
     Helper.testElementText('main-error', error.message)
     expect(errorWrap.childElementCount).toBe(1)
+  })
+
+  test('Should call SaveAccessToken on success', async () => {
+    const { addAccountSpy, saveAccessTokenMock } = makeSut()
+    Helper.simulateSubmitValidFormLogin()
+    await waitFor(() => screen.getByTestId('form'))
+    expect(saveAccessTokenMock.accessToken).toBe(
+      addAccountSpy.account.accessToken,
+    )
   })
 })

@@ -6,16 +6,19 @@ import Styled from './sign-up.module.scss'
 import { useSignUp } from './hook/useSignUp'
 import { IValidation } from '@/presentation/protocols/validation'
 import { AddAccountSpy } from '@/presentation/test'
+import { ISaveAccessToken } from '@/domain/usecases'
 
 export type Props = {
   validation: IValidation
   addAccount: AddAccountSpy
+  saveAccessToken: ISaveAccessToken
 }
 
-const SignUp: FC<Props> = ({ validation, addAccount }) => {
+const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
   const { state, handlerNavigate, handleChange, handlerLogin } = useSignUp({
     validation,
     addAccount,
+    saveAccessToken,
   })
 
   return (
