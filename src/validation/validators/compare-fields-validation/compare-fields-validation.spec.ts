@@ -12,9 +12,10 @@ describe('CompareFieldsValidation', () => {
     expect(error).toEqual(new ValidateError.InvalidFieldError())
   })
 
-  // test('Should return error if field is not empty', () => {
-  //   const sut = makeSut()
-  //   const error = sut.validate(faker.internet.email())
-  //   expect(error).toBeFalsy()
-  // })
+  test('Should return error if compare is valid', () => {
+    const password = faker.word.words()
+    const sut = makeSut(password)
+    const error = sut.validate(password)
+    expect(error).toBeFalsy()
+  })
 })
