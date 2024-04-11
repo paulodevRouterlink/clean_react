@@ -19,10 +19,12 @@ export class RemoteAddAccount implements IAddAccount {
     })
 
     switch (httpResponse.statusCode) {
+      case HttpStatusCode.ok:
+        return null
       case HttpStatusCode.forbidden:
         throw new Errors.EmailInUseError()
       default:
-        return null
+        throw new Errors.UnexpectedError()
     }
   }
 }
