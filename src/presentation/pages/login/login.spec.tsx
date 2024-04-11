@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   RenderResult,
+  screen,
   waitFor,
 } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
@@ -47,6 +48,17 @@ const makeSut = (params?: SutParams): SutTypes => {
     authenticationSpy,
     saveAccessTokenMock,
   }
+}
+
+const simulateValidSubmitLogin = async (
+  email = faker.internet.email(),
+  password = faker.internet.password(),
+): Promise<void> => {
+  Helper.populateField('email', email)
+  Helper.populateField('password', password)
+  const form = screen.getByTestId('form')
+  fireEvent.submit(form)
+  await waitFor(() => form)
 }
 
 const simulateValidSubmit = (
@@ -114,9 +126,9 @@ describe('Login Component', () => {
     Helper.testButtonIsDisabled('submit', false)
   })
 
-  test('Should show spinner on submit', () => {
-    const { sut } = makeSut()
-    simulateValidSubmit(sut)
+  test('Should show spinner on submit', async () => {
+    makeSut()
+    await simulateValidSubmitLogin()
     Helper.testElementExists('spinner')
   })
 

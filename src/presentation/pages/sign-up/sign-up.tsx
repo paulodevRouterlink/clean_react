@@ -11,7 +11,7 @@ export type Props = {
 }
 
 const SignUp: FC<Props> = ({ validation }) => {
-  const { handlerNavigate, state, handleChange, handlerLogin } = useSignUp({
+  const { state, handlerNavigate, handleChange, handlerLogin } = useSignUp({
     validation,
   })
 

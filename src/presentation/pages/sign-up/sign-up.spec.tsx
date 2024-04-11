@@ -97,9 +97,9 @@ describe('SignUp Component', () => {
     Helper.testButtonIsDisabled('submit', false)
   })
 
-  test('Should show spinner on submit', () => {
+  test('Should show spinner on submit', async () => {
     makeSut()
-    Helper.simulateValidSubmit()
+    await Helper.simulateValidSubmit()
     Helper.testElementExists('spinner')
   })
 })

@@ -1,17 +1,20 @@
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 
-const simulateValidSubmit = (
+const simulateValidSubmit = async (
   name = faker.internet.userName(),
   email = faker.internet.email(),
   password = faker.internet.password(),
-): void => {
+): Promise<void> => {
   populateField('name', name)
   populateField('email', email)
   populateField('password', password)
   populateField('passwordConfirmation', password)
-  const submitButton = screen.getByTestId('submit')
-  fireEvent.click(submitButton)
+  // const submitButton = screen.getByTestId('submit')
+  // fireEvent.click(submitButton)
+  const form = screen.getByTestId('form')
+  fireEvent.submit(form)
+  await waitFor(() => form)
 }
 
 const testChildCount = (fieldName: string, count: number) => {
