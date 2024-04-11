@@ -3,9 +3,15 @@ import { Button, FormStatus, Input } from '@/presentation/components/ui'
 import { FormContext } from '@/presentation/contexts/form'
 import Styled from './sign-up.module.scss'
 import { useSignUp } from './hook/useSignUp'
+import { IValidation } from '@/presentation/protocols/validation'
+import { FC } from 'react'
 
-const SignUp = () => {
-  const { handlerNavigate, state, handleChange } = useSignUp()
+export type Props = {
+  validation: IValidation
+}
+
+const SignUp: FC<Props> = ({ validation }) => {
+  const { handlerNavigate, state, handleChange } = useSignUp({ validation })
 
   return (
     <FormContext.Provider value={{ state }}>

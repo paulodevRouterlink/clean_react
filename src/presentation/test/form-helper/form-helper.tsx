@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react'
+import { faker } from '@faker-js/faker'
+import { fireEvent, screen } from '@testing-library/react'
 
 const testChildCount = (fieldName: string, count: number) => {
   const el = screen.getByTestId(fieldName)
@@ -19,4 +20,14 @@ const testStatusForField = (
   expect(fieldStatus.textContent).toBe(validationError ? '🔴' : '🟢')
 }
 
-export { testButtonIsDisabled, testStatusForField, testChildCount }
+const populateField = (fieldName: string, value = faker.word.words()): void => {
+  const input = screen.getByTestId(fieldName)
+  fireEvent.input(input, { target: { value } })
+}
+
+export {
+  testButtonIsDisabled,
+  testStatusForField,
+  testChildCount,
+  populateField,
+}
