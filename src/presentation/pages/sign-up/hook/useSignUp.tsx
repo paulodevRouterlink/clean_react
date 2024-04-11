@@ -8,9 +8,10 @@ const useSignUp = ({ validation }: Props) => {
     isLoading: false,
     name: '',
     email: '',
+    password: '',
     nameError: '',
     emailError: '',
-    passwordError: 'Campo Obrigatório',
+    passwordError: '',
     passwordConfirmationError: 'Campo Obrigatório',
     mainError: '',
   })
@@ -20,9 +21,10 @@ const useSignUp = ({ validation }: Props) => {
       ...state,
       nameError: validation.validate('name', state.name),
       emailError: validation.validate('email', state.email),
+      passwordError: validation.validate('email', state.password),
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.name, state.email])
+  }, [state.name, state.email, state.password])
 
   const handlerNavigate = () => navigate('/signin')
 
