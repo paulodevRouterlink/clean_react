@@ -36,7 +36,7 @@ const Login: FC<LoginPageProps> = ({
           onChange={handleChange}
           value={state.email}
           message={state.emailError}
-          error={!state.emailError}
+          error={!!state.emailError}
           helperText={state.emailError}
         />
 
@@ -47,7 +47,7 @@ const Login: FC<LoginPageProps> = ({
           onChange={handleChange}
           value={state.password}
           message={state.passwordError}
-          error={!state.passwordError}
+          error={!!state.passwordError}
           helperText={state.passwordError}
         />
 
@@ -66,7 +66,7 @@ const Login: FC<LoginPageProps> = ({
           Criar conta
         </span>
 
-        <FormStatus isLoading={state.isLoading} mainError={state.mainError} />
+        <FormStatus />
       </form>
     </FormContext.Provider>
   )

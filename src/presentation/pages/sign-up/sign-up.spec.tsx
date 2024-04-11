@@ -1,5 +1,6 @@
 import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import { faker } from '@faker-js/faker'
 import { SignUp } from './sign-up'
 import {
   AddAccountSpy,
@@ -7,7 +8,6 @@ import {
   SaveAccessTokenMock,
   ValidationStub,
 } from '@/presentation/test'
-import { faker } from '@faker-js/faker'
 import { Errors } from '@/domain/errors'
 
 type SutTypes = {
@@ -158,10 +158,22 @@ describe('SignUp Component', () => {
 
   test('Should call SaveAccessToken on success', async () => {
     const { addAccountSpy, saveAccessTokenMock } = makeSut()
-    Helper.simulateSubmitValidFormLogin()
+    Helper.simulateValidSubmitSign()
     await waitFor(() => screen.getByTestId('form'))
     expect(saveAccessTokenMock.accessToken).toBe(
       addAccountSpy.account.accessToken,
     )
+  })
+
+  test.skip('Should prevent error if SaveAccessToken fails', async () => {
+    const { saveAccessTokenMock } = makeSut()
+    const error = new Errors.EmailInUseError()
+    jest.spyOn(saveAccessTokenMock, 'save').mockRejectedValueOnce(error)
+    await Helper.simulateValidSubmit()
+    // const errorWrap = screen.getByTestId('error-wrap')
+    // await waitFor(() => errorWrap)
+    Helper.testElementText('main-error', error.message)
+    Helper.testChildCount('error-wrap', 1)
+    // expect(errorWrap.childElementCount).toBe(1)
   })
 })

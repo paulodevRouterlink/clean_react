@@ -31,8 +31,9 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           name="name"
           placeholder="Informe seu nome"
           onChange={handleChange}
+          value={state.name}
           message={state.nameError}
-          error={!state.nameError}
+          error={!!state.nameError}
           helperText={state.nameError}
         />
         <Input
@@ -40,8 +41,9 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           name="email"
           placeholder="Informe seu email"
           onChange={handleChange}
+          value={state.email}
           message={state.emailError}
-          error={!state.emailError}
+          error={!!state.emailError}
           helperText={state.emailError}
         />
         <Input
@@ -49,8 +51,9 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           name="password"
           placeholder="Informe sua senha"
           onChange={handleChange}
+          value={state.password}
           message={state.passwordError}
-          error={!state.passwordError}
+          error={!!state.passwordError}
           helperText={state.passwordError}
         />
         <Input
@@ -58,8 +61,9 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           name="passwordConfirmation"
           placeholder="Confirme sua senha"
           onChange={handleChange}
+          value={state.passwordConfirmation}
           message={state.passwordConfirmationError}
-          error={!state.passwordConfirmationError}
+          error={!!state.passwordConfirmationError}
           helperText={state.passwordConfirmationError}
         />
 
@@ -83,7 +87,7 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           Volta para o login
         </span>
 
-        <FormStatus isLoading={state.isLoading} mainError={state.mainError} />
+        <FormStatus />
       </form>
     </FormContext.Provider>
   )
