@@ -44,6 +44,16 @@ const useSignUp = ({ validation, addAccount }: Props) => {
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault()
+    if (
+      state.isLoading ||
+      state.nameError ||
+      state.emailError ||
+      state.passwordError ||
+      state.passwordConfirmationError
+    ) {
+      return
+    }
+
     setState({ ...state, isLoading: true })
     await addAccount.add({
       name: state.name,
