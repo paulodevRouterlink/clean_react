@@ -54,6 +54,7 @@ const SignUp = () => {
         <span className={Styled.link} onClick={() => handlerNavigate()}>
           Volta para o login
         </span>
+
         <FormStatus />
       </form>
     </FormContext.Provider>

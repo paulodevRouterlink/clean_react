@@ -5,10 +5,6 @@ const useSignUp = () => {
   const navigate = useNavigate()
   const [state, setState] = useState({
     isLoading: false,
-    // name: '',
-    // email: '',
-    // password: '',
-    // passwordConfirmation: '',
     nameError: 'Campo Obrigatório',
     emailError: 'Campo Obrigatório',
     passwordError: 'Campo Obrigatório',

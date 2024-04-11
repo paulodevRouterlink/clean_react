@@ -13,6 +13,7 @@ import {
   ValidationStub,
 } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
+import { BrowserRouter } from 'react-router-dom'
 
 type SutTypes = {
   sut: RenderResult
@@ -31,11 +32,13 @@ const makeSut = (params?: SutParams): SutTypes => {
   validationStub.errorMessage = params?.validationError
 
   const sut = render(
-    <Login
-      validation={validationStub}
-      authentication={authenticationSpy}
-      saveAccessToken={saveAccessTokenMock}
-    />,
+    <BrowserRouter>
+      <Login
+        validation={validationStub}
+        authentication={authenticationSpy}
+        saveAccessToken={saveAccessTokenMock}
+      />
+    </BrowserRouter>,
   )
 
   return {
