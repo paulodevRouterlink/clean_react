@@ -12,4 +12,11 @@ export namespace Errors {
       this.name = 'UnexpectedError'
     }
   }
+
+  export class EmailInUseError extends Error {
+    constructor() {
+      super('Esse email já esta sendo utilizado')
+      this.name = 'UnexpectedError'
+    }
+  }
 }
