@@ -1,12 +1,13 @@
+import { FC } from 'react'
 import { RouteObject } from 'react-router-dom'
-import { Login } from '@/presentation/pages'
-import { adapterLogin } from '@/main/adapters'
 
-const { authentication, validation } = adapterLogin()
+type Props = {
+  makeLogin: FC
+}
 
-const appRoutes = (): RouteObject => ({
-  path: '/login',
-  element: <Login validation={validation} authentication={authentication} />,
-})
+const appRoutes = ({ makeLogin: Login }: Props): RouteObject[] => [
+  { path: '/login', element: <Login /> },
+  { path: '/sign-up', element: <h1>sign-up</h1> },
+]
 
 export { appRoutes }

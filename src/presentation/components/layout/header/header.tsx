@@ -2,13 +2,14 @@ import { FC, memo } from 'react'
 import Styled from './header.module.scss'
 
 type HeaderProps = {
-  props: {
-    heading: string
-    logo: string
-  }
+  heading?: string
+  logo?: string
 }
 
-const Head: FC<HeaderProps> = ({ props: { heading, logo } }) => {
+const Head: FC<HeaderProps> = ({
+  heading = '4Dev - Enquete para programadores',
+  logo = '/logo.png',
+}) => {
   return (
     <header className={Styled.header}>
       <img src={logo} alt="Logotipo" />

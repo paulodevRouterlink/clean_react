@@ -2,21 +2,27 @@
 
 $font-family-luckiest: fonts.$font-luckiest;
 
-h1 {
+@mixin h1 {
   font-weight: fonts.$font-semibold;
   font-family: $font-family-luckiest;
   font-size: fonts.$font-4xl;
   line-height: fonts.$leading-relaxed;
 }
 
-h2 {
+@mixin h2 {
   font-weight: fonts.$font-semibold;
   font-family: $font-family-luckiest;
   font-size: fonts.$font-3xl;
 }
 
-h3 {
+@mixin h3 {
   font-weight: fonts.$font-semibold;
   font-family: $font-family-luckiest;
   font-size: fonts.$font-2xl;
+}
+
+@mixin body2 {
+  font-weight: fonts.$font-normal;
+  font-family: fonts.$font-poppins;
+  font-size: fonts.$font-lg;
 }

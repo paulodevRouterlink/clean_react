@@ -1,8 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {
-  AuthenticationParams as AuthParams,
-  IAuthentication,
-} from '@/domain/usecases/auth/auth'
+import { AuthParams,  IAuthentication} from '@/domain/usecases/auth/auth'
 import { HttpPostClient, HttpStatusCode } from '@/data/protocols/http'
 import { AccountModel } from '@/domain/models/account-models'
 import { Errors } from '@/domain/errors'

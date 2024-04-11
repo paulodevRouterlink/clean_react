@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { HttpPostParams } from '../protocols/http'
+import { HttpPostParams } from '@/data/protocols/http'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mockPostRequest = (): HttpPostParams<any> => ({

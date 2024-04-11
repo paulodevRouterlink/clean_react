@@ -1,0 +1,14 @@
+@use '@/presentation/scss/main';
+
+.error_wrap {
+  display: flex;
+  flex-direction: main.$flex-col;
+  justify-content: center;
+  align-items: center;
+  gap: main.spacing(5px);
+
+  &__text {
+    @include main.body2;
+    text-transform: capitalize;
+  }
+}

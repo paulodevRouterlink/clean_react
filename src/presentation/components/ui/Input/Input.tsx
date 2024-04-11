@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     const getStatus = (): string => (message ? '🔴' : '🟢')
-    const getError = (): string => message || 'Tudo certo!'
+    const getError = (): string => message || 'Tudo Certo!'
 
     return (
       <div className={Styled.input_field}>
@@ -39,14 +39,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error && (
-          <div data-testid="helper-text">
-            <span
-              data-testid="main-error"
-              className={Styled.input_field__helper_text}
-            >
-              {helperText}
-            </span>
-          </div>
+          <span className={Styled.input_field__helper_text}>{helperText}</span>
         )}
       </div>
     )

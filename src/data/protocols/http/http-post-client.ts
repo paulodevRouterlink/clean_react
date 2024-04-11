@@ -1,12 +1,10 @@
-import { HttpResponse } from './index'
+import { HttpResponse } from '.'
 
-type HttpPostParams<T> = {
+export type HttpPostParams<T> = {
   url: string
   body?: T
 }
 
-interface HttpPostClient<T, R> {
+export interface HttpPostClient<T, R> {
   post(params: HttpPostParams<T>): Promise<HttpResponse<R>>
 }
-
-export type { HttpPostClient, HttpPostParams }

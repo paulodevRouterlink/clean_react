@@ -1,8 +1,6 @@
 $white: #fff;
 $black: #000;
-
 $disabled: rgb(131, 131, 131, 0.5);
-
 $red-600: #dc2626;
 $red-800: #991b1b;
 
@@ -14,8 +12,8 @@ $cream: #fffecbff;
 $iris: #5448c8ff;
 
 /* SCSS HSL */
-$black-olive: hsla(26, 6%, 25%, 1);
-$scarlet: hsla(11, 100%, 50%, 1);
+$dark: hsla(26, 6%, 25%, 1);
+$danger: hsla(11, 100%, 50%, 1);
 $warning: hsla(35, 99%, 59%, 1);
 $secondary: hsla(59, 100%, 90%, 1);
 $primary: hsla(246, 54%, 53%, 1);
