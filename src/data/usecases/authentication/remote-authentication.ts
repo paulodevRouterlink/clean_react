@@ -23,7 +23,7 @@ export class RemoteAuthentication implements IAuthentication {
       case HttpStatusCode.ok:
         return httpResponse.body
       case HttpStatusCode.unauthorized:
-        throw new Errors.InvalidCredentialError()
+        throw new Errors.InvalidCredentialsError()
       default:
         throw new Errors.UnexpectedError()
     }

@@ -43,7 +43,7 @@ describe('RemoteAuthentication', () => {
       statusCode: HttpStatusCode.unauthorized,
     }
     const promise = sut.auth(mockAuthentication())
-    await expect(promise).rejects.toThrow(new Errors.InvalidCredentialError())
+    await expect(promise).rejects.toThrow(new Errors.InvalidCredentialsError())
   })
 
   test('Should throw UnexpectedError if HttpPostClient return 400', async () => {

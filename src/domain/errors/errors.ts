@@ -1,5 +1,5 @@
 export namespace Errors {
-  export class InvalidCredentialError extends Error {
+  export class InvalidCredentialsError extends Error {
     constructor() {
       super('Credencias inválida')
       this.name = 'InvalidCredentialError'

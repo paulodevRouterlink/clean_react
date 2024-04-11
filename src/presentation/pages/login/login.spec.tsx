@@ -1,9 +1,4 @@
-import {
-  cleanup,
-  fireEvent,
-  render,
-  RenderResult,
-} from '@testing-library/react'
+import { fireEvent, render, RenderResult } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 import { Login } from './login'
 import { AuthenticationSpy, ValidationStub } from '@/presentation/test'
@@ -68,7 +63,6 @@ const simulateStatusField = (
 }
 
 describe('Login Component', () => {
-  afterEach(cleanup)
   test('Should start initial state', () => {
     const validationError = faker.word.words()
     const { sut } = makeSut({ validationError })
@@ -139,11 +133,24 @@ describe('Login Component', () => {
     expect(authenticationSpy.callsCount).toBe(1)
   })
 
-  test('Should call Authentication only once', () => {
+  test('Should not call Authentication if form is invalid', () => {
     const validationError = faker.word.words()
     const { sut, authenticationSpy } = makeSut({ validationError })
     populateEmailField(sut)
     fireEvent.submit(sut.getByTestId('form'))
     expect(authenticationSpy.callsCount).toBe(0)
   })
+
+  // test('Should present error if Authentication fails', async () => {
+  //   const { sut, authenticationSpy } = makeSut()
+  //   const error = new Errors.InvalidCredentialsError()
+  //   jest
+  //     .spyOn(authenticationSpy, 'auth')
+  //     .mockReturnValueOnce(Promise.reject(error))
+  //   simulateValidSubmit(sut)
+  //   const helperText = sut.getByTestId('helper-text')
+  //   await waitFor(() => helperText)
+  //   const mainError = sut.getByTestId('main-error')
+  //   expect(mainError.textContent).toBe(error)
+  // })
 })

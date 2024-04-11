@@ -1,4 +1,4 @@
-import { FocusEvent, InputHTMLAttributes, forwardRef } from 'react'
+import { FocusEvent, forwardRef, InputHTMLAttributes } from 'react'
 import classNames from 'classnames'
 import Styled from './input.module.scss'
 
@@ -40,7 +40,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
         {error && (
           <div data-testid="helper-text">
-            <span className={Styled.input_field__helper_text}>
+            <span
+              data-testid="main-error"
+              className={Styled.input_field__helper_text}
+            >
               {helperText}
             </span>
           </div>
