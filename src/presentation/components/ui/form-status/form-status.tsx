@@ -1,10 +1,14 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 import { Spinner } from '../spinner'
 import Styled from './form-status.module.scss'
-import { FormContext } from '@/presentation/contexts/form'
 
-const FormStatus: FC = () => {
-  const { isLoading, mainError } = useContext(FormContext)
+type FormStatusProps = {
+  isLoading?: boolean
+  mainError?: string
+}
+
+const FormStatus: FC<FormStatusProps> = ({ isLoading, mainError }) => {
+  // const { isLoading, mainError } = useContext(FormContext)
 
   return (
     <div data-testid="error-wrap" className={Styled.error_wrap}>

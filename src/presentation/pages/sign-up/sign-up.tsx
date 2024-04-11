@@ -29,6 +29,8 @@ const SignUp: FC<Props> = ({ validation, addAccount }) => {
           placeholder="Informe seu nome"
           onChange={handleChange}
           message={state.nameError}
+          error={!state.nameError}
+          helperText={state.nameError}
         />
         <Input
           type="email"
@@ -36,6 +38,8 @@ const SignUp: FC<Props> = ({ validation, addAccount }) => {
           placeholder="Informe seu email"
           onChange={handleChange}
           message={state.emailError}
+          error={!state.emailError}
+          helperText={state.emailError}
         />
         <Input
           type="password"
@@ -43,6 +47,8 @@ const SignUp: FC<Props> = ({ validation, addAccount }) => {
           placeholder="Informe sua senha"
           onChange={handleChange}
           message={state.passwordError}
+          error={!state.passwordError}
+          helperText={state.passwordError}
         />
         <Input
           type="password"
@@ -50,6 +56,8 @@ const SignUp: FC<Props> = ({ validation, addAccount }) => {
           placeholder="Confirme sua senha"
           onChange={handleChange}
           message={state.passwordConfirmationError}
+          error={!state.passwordConfirmationError}
+          helperText={state.passwordConfirmationError}
         />
 
         <Button
@@ -72,7 +80,7 @@ const SignUp: FC<Props> = ({ validation, addAccount }) => {
           Volta para o login
         </span>
 
-        <FormStatus />
+        <FormStatus isLoading={state.isLoading} mainError={state.mainError} />
       </form>
     </FormContext.Provider>
   )

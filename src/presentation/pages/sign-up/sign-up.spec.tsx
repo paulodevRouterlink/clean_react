@@ -1,8 +1,15 @@
-import { RenderResult, cleanup, render } from '@testing-library/react'
+import {
+  RenderResult,
+  cleanup,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { SignUp } from './sign-up'
 import { AddAccountSpy, Helper, ValidationStub } from '@/presentation/test'
 import { faker } from '@faker-js/faker'
+import { Errors } from '@/domain/errors'
 
 type SutTypes = {
   sut: RenderResult
@@ -132,5 +139,16 @@ describe('SignUp Component', () => {
     Helper.populateField('email')
     await Helper.simulateValidSubmit()
     expect(addAccountSpy.callsCount).toEqual(0)
+  })
+
+  test('Should prevent error if AddAccount fails', async () => {
+    const { addAccountSpy } = makeSut()
+    const error = new Errors.EmailInUseError()
+    jest.spyOn(addAccountSpy, 'add').mockRejectedValueOnce(error)
+    Helper.simulateValidSubmitSign()
+    const errorWrap = screen.getByTestId('error-wrap')
+    await waitFor(() => errorWrap)
+    Helper.testElementText('main-error', error.message)
+    expect(errorWrap.childElementCount).toBe(1)
   })
 })

@@ -66,7 +66,7 @@ const Login: FC<LoginPageProps> = ({
           Criar conta
         </span>
 
-        <FormStatus />
+        <FormStatus isLoading={state.isLoading} mainError={state.mainError} />
       </form>
     </FormContext.Provider>
   )

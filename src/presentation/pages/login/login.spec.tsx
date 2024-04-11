@@ -158,9 +158,7 @@ describe('Login Component', () => {
   test('Should prevent error if Authentication fails', async () => {
     const { sut, authenticationSpy } = makeSut()
     const error = new Errors.InvalidCredentialError()
-    jest
-      .spyOn(authenticationSpy, 'auth')
-      .mockReturnValueOnce(Promise.reject(error))
+    jest.spyOn(authenticationSpy, 'auth').mockRejectedValueOnce(error)
     simulateValidSubmit(sut)
     const errorWrap = sut.getByTestId('error-wrap')
     await waitFor(() => errorWrap)
