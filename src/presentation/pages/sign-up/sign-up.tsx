@@ -11,11 +11,13 @@ export type Props = {
 }
 
 const SignUp: FC<Props> = ({ validation }) => {
-  const { handlerNavigate, state, handleChange } = useSignUp({ validation })
+  const { handlerNavigate, state, handleChange, handlerLogin } = useSignUp({
+    validation,
+  })
 
   return (
-    <FormContext.Provider value={{ state }}>
-      <form className={Styled.form}>
+    <FormContext.Provider value={state}>
+      <form data-testid="form" onSubmit={handlerLogin} className={Styled.form}>
         <h2>Criar Conta</h2>
 
         <Input
@@ -55,6 +57,7 @@ const SignUp: FC<Props> = ({ validation }) => {
             !!state.passwordError &&
             !!state.passwordConfirmationError
           }
+          isLoading={state.isLoading}
           sx={{ width: '40%' }}
           size="small"
         >

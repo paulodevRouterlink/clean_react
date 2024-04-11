@@ -1,6 +1,19 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 
+const simulateValidSubmit = (
+  name = faker.internet.userName(),
+  email = faker.internet.email(),
+  password = faker.internet.password(),
+): void => {
+  populateField('name', name)
+  populateField('email', email)
+  populateField('password', password)
+  populateField('passwordConfirmation', password)
+  const submitButton = screen.getByTestId('submit')
+  fireEvent.click(submitButton)
+}
+
 const testChildCount = (fieldName: string, count: number) => {
   const el = screen.getByTestId(fieldName)
   expect(el.childElementCount).toBe(count)
@@ -25,9 +38,16 @@ const populateField = (fieldName: string, value = faker.word.words()): void => {
   fireEvent.input(input, { target: { value } })
 }
 
+const testElementExists = (fieldName: string): void => {
+  const el = screen.getByTestId(fieldName)
+  expect(el).toBeTruthy()
+}
+
 export {
+  simulateValidSubmit,
   testButtonIsDisabled,
   testStatusForField,
+  testElementExists,
   testChildCount,
   populateField,
 }

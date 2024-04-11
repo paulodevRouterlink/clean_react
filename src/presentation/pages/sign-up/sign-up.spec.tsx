@@ -96,4 +96,10 @@ describe('SignUp Component', () => {
     Helper.populateField('passwordConfirmation')
     Helper.testButtonIsDisabled('submit', false)
   })
+
+  test('Should show spinner on submit', () => {
+    makeSut()
+    Helper.simulateValidSubmit()
+    Helper.testElementExists('spinner')
+  })
 })

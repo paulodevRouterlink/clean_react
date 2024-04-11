@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Props } from '../sign-up'
 
@@ -40,7 +40,14 @@ const useSignUp = ({ validation }: Props) => {
     })
   }
 
-  return { handlerNavigate, state, handleChange }
+  const handlerLogin = async (
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    event.preventDefault()
+    setState({ ...state, isLoading: true })
+  }
+
+  return { state, handlerNavigate, handleChange, handlerLogin }
 }
 
 export { useSignUp }
