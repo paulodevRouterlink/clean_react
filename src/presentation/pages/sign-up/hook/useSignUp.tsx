@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Props } from '../sign-up'
 
-const useSignUp = ({ validation }: Props) => {
+const useSignUp = ({ validation, addAccount }: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState({
     isLoading: false,
@@ -45,6 +45,12 @@ const useSignUp = ({ validation }: Props) => {
   ): Promise<void> => {
     event.preventDefault()
     setState({ ...state, isLoading: true })
+    await addAccount.add({
+      name: state.name,
+      email: state.email,
+      password: state.password,
+      passwordConfirmation: state.passwordConfirmation,
+    })
   }
 
   return { state, handlerNavigate, handleChange, handlerLogin }

@@ -1,18 +1,21 @@
+import { FC } from 'react'
 import { AiOutlineLogin } from 'react-icons/ai'
 import { Button, FormStatus, Input } from '@/presentation/components/ui'
 import { FormContext } from '@/presentation/contexts/form'
 import Styled from './sign-up.module.scss'
 import { useSignUp } from './hook/useSignUp'
 import { IValidation } from '@/presentation/protocols/validation'
-import { FC } from 'react'
+import { AddAccountSpy } from '@/presentation/test'
 
 export type Props = {
   validation: IValidation
+  addAccount: AddAccountSpy
 }
 
-const SignUp: FC<Props> = ({ validation }) => {
+const SignUp: FC<Props> = ({ validation, addAccount }) => {
   const { state, handlerNavigate, handleChange, handlerLogin } = useSignUp({
     validation,
+    addAccount,
   })
 
   return (
