@@ -31,7 +31,7 @@ const SignUp = () => {
         </Button>
 
         <span className={Styled.link} onClick={() => handlerNavigate()}>
-          Criar conta
+          Volta para o login
         </span>
         <FormStatus />
       </form>
