@@ -1,18 +1,20 @@
+import { faker } from '@faker-js/faker'
 import { ValidateError } from '@/validation/errors'
 import { RequiredFieldValidation } from './required-field-validation'
-import { faker } from '@faker-js/faker'
 
-const makeSut = () => new RequiredFieldValidation(faker.database.column())
+const makeSut = (field: string) => new RequiredFieldValidation(field)
 describe('Required Field Validation', () => {
   test('Should return error if field is empty', () => {
-    const sut = makeSut()
-    const error = sut.validate('')
+    const field = faker.database.column()
+    const sut = makeSut(field)
+    const error = sut.validate({ [field]: '' })
     expect(error).toEqual(new ValidateError.RequiredFieldError())
   })
 
   test('Should return error if field is not empty', () => {
-    const sut = makeSut()
-    const error = sut.validate(faker.internet.email())
+    const field = faker.database.column()
+    const sut = makeSut(field)
+    const error = sut.validate({ [field]: faker.internet.email() })
     expect(error).toBeFalsy()
   })
 })

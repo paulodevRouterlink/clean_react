@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable unused-imports/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { IFieldValidation } from '@/validation/protocols'
@@ -5,9 +6,9 @@ import { IFieldValidation } from '@/validation/protocols'
 export class FieldValidationSpy implements IFieldValidation {
   error: Error = null
 
-  constructor(readonly field: string) {}
+  constructor(readonly field: string) { }
 
-  validate(value: string): Error {
+  validate(input: object): Error {
     return this.error
   }
 }
