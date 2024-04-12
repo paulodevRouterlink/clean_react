@@ -1,11 +1,11 @@
 import { useRoutes } from 'react-router-dom'
 import { appRoutes } from './app.routes'
-import { makeLogin } from '@/main/factory/pages'
+import { makeLogin, makeSignUp } from '@/main/factory/pages'
 
 const Routes = () => {
-  const mainRoutes = appRoutes({ makeLogin })
+  const mainRoutes = appRoutes({ makeLogin, makeSignUp })
 
-  return useRoutes(mainRoutes)
+  return useRoutes([mainRoutes])
 }
 
 export { Routes }

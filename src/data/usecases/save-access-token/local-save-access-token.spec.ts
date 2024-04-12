@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { faker } from '@faker-js/faker'
 import { LocalSaveAccessToken } from './local-save-access-token'
-import { SetStorageMock } from '@/data/test/mock-set-storage'
+import { SetStorageMock } from '@/data/test'
 
 type SutTypes = {
   sut: LocalSaveAccessToken
