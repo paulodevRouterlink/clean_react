@@ -8,7 +8,7 @@ export namespace ValidateError {
 
   export class InvalidFieldError extends Error {
     constructor() {
-      super('Valor invalido')
+      super('Valor inválido')
       this.name = 'InvalidFieldError'
     }
   }

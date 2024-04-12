@@ -9,6 +9,7 @@
     "cypress"
   ],
   "rules": {
+    "cypress/unsafe-to-chain-command": "off",
     "@typescript-eslint/no-namespace": "off",
     "no-useless-constructor": "off",
     "react-refresh/only-export-components": [

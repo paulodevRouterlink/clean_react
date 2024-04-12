@@ -3,6 +3,7 @@
     "target": "ES5",
     "lib": ["ES5","DOM"],
     "types": ["node", "cypress"],
+    "isolatedModules": true
   },
   "include": ["**/*.ts"]
 }
