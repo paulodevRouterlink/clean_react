@@ -23,7 +23,6 @@
     "noFallthroughCasesInSwitch": true,
     "types": [
       "node",
-      "cypress"
     ],
     "paths": {
       "@/*": [
