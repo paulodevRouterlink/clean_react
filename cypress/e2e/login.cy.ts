@@ -58,4 +58,17 @@ describe('Login', () => {
       .getByTestId('main-error')
       .should('exist')
   })
+
+  it('Should present save accessToken if valid credentials provided', () => {
+    cy.getByTestId('email').focus().type(faker.internet.email())
+    cy.getByTestId('password').focus().type(faker.string.alphanumeric(5))
+    cy.getByTestId('submit').click()
+    cy.getByTestId('error-wrap')
+      .getByTestId('spinner')
+      .should('exist')
+      .getByTestId('main-error')
+      .should('not.exist')
+      .getByTestId('spinner')
+      .should('not.exist')
+  })
 })
