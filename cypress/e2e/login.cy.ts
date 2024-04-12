@@ -1,7 +1,13 @@
 describe('Login', () => {
+  beforeEach(() => {
+    cy.visit('signin')
+  })
+
   it('Should load with correct with state', () => {
-    cy.visit('http://localhost:5173/')
-    cy.get('h2').contains('Login')
-    cy.get('button').contains('Entrar')
+    cy.getByTestId('email-status').should(
+      'have.attr',
+      'title',
+      'Campo Obrigatório',
+    )
   })
 })
