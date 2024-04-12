@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Props } from '../sign-up'
@@ -28,7 +29,6 @@ const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
         state.passwordConfirmation,
       ),
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.name, state.email, state.password, state.passwordConfirmation])
 
   const handlerNavigate = () => navigate('/signin')
