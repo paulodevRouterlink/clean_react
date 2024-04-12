@@ -1,21 +1,17 @@
 import { FC } from 'react'
 import { SignUp } from '@/presentation/pages'
+import { makeSignUpValidation } from './sign-up-validation'
 import {
-  AddAccountSpy,
-  SaveAccessTokenMock,
-  ValidationStub,
-} from '@/presentation/test'
+  makeLocalSaveAccessToken,
+  makeRemoteAddAccount,
+} from '@/main/factory/usecases'
 
 export const makeSignUp: FC = () => {
-  const validationStub = new ValidationStub()
-  const addAccountSpy = new AddAccountSpy()
-  const saveAccessTokenMock = new SaveAccessTokenMock()
-
   return (
     <SignUp
-      validation={validationStub}
-      addAccount={addAccountSpy}
-      saveAccessToken={saveAccessTokenMock}
+      addAccount={makeRemoteAddAccount()}
+      validation={makeSignUpValidation()}
+      saveAccessToken={makeLocalSaveAccessToken()}
     />
   )
 }

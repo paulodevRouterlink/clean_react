@@ -5,12 +5,11 @@ import { FormContext } from '@/presentation/contexts/form'
 import Styled from './sign-up.module.scss'
 import { useSignUp } from './hook/useSignUp'
 import { IValidation } from '@/presentation/protocols/validation'
-import { AddAccountSpy } from '@/presentation/test'
-import { ISaveAccessToken } from '@/domain/usecases'
+import { IAddAccount, ISaveAccessToken } from '@/domain/usecases'
 
 export type Props = {
   validation: IValidation
-  addAccount: AddAccountSpy
+  addAccount: IAddAccount
   saveAccessToken: ISaveAccessToken
 }
 
