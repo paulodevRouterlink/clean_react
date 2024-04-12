@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LoginPageProps } from '../login'
@@ -9,6 +10,7 @@ const useLogin = ({
 }: LoginPageProps) => {
   const [state, setState] = useState({
     isLoading: false,
+    isFormInvalid: true,
     email: '',
     password: '',
     emailError: '',
@@ -18,12 +20,15 @@ const useLogin = ({
   const navigate = useNavigate()
 
   useEffect(() => {
+    const emailError = validation.validate('email', state.email)
+    const passwordError = validation.validate('password', state.password)
+
     setState({
       ...state,
-      emailError: validation.validate('email', state.email),
-      passwordError: validation.validate('password', state.password),
+      emailError,
+      passwordError,
+      isFormInvalid: !!emailError || !!passwordError,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.email, state.password])
 
   const handlerNavigate = () => navigate('/signup')
@@ -34,7 +39,7 @@ const useLogin = ({
     event.preventDefault()
 
     try {
-      if (state.isLoading || state.emailError || state.passwordError) return
+      if (state.isLoading || state.isFormInvalid) return
       setState({ ...state, isLoading: true })
       const account = await authentication.auth({
         email: state.email,

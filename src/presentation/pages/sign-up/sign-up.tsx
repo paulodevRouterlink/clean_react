@@ -69,12 +69,7 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
 
         <Button
           data-testid="submit"
-          disabled={
-            !!state.nameError &&
-            !!state.emailError &&
-            !!state.passwordError &&
-            !!state.passwordConfirmationError
-          }
+          disabled={state.isFormInvalid}
           isLoading={state.isLoading}
           sx={{ width: '40%' }}
           size="small"

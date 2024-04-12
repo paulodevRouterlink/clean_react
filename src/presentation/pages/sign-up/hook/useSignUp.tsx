@@ -7,6 +7,7 @@ const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState({
     isLoading: false,
+    isFormInvalid: true,
     name: '',
     email: '',
     password: '',
@@ -19,15 +20,25 @@ const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
   })
 
   useEffect(() => {
+    const nameError = validation.validate('name', state.name)
+    const emailError = validation.validate('email', state.email)
+    const passwordError = validation.validate('password', state.password)
+    const passwordConfirmationError = validation.validate(
+      'passwordConfirmation',
+      state.passwordConfirmation,
+    )
+
     setState({
       ...state,
-      nameError: validation.validate('name', state.name),
-      emailError: validation.validate('email', state.email),
-      passwordError: validation.validate('password', state.password),
-      passwordConfirmationError: validation.validate(
-        'passwordConfirmation',
-        state.passwordConfirmation,
-      ),
+      nameError,
+      emailError,
+      passwordError,
+      passwordConfirmationError,
+      isFormInvalid:
+        !!nameError ||
+        !!emailError ||
+        !!passwordError ||
+        !!passwordConfirmationError,
     })
   }, [state.name, state.email, state.password, state.passwordConfirmation])
 
@@ -45,15 +56,7 @@ const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
   ): Promise<void> => {
     event.preventDefault()
     try {
-      if (
-        state.isLoading ||
-        state.nameError ||
-        state.emailError ||
-        state.passwordError ||
-        state.passwordConfirmationError
-      ) {
-        return
-      }
+      if (state.isLoading || state.isFormInvalid) return
 
       setState({ ...state, isLoading: true })
       const account = await addAccount.add({

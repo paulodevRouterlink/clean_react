@@ -53,7 +53,7 @@ const Login: FC<LoginPageProps> = ({
 
         <Button
           data-testid="submit"
-          disabled={!!state.emailError && !!state.passwordError}
+          disabled={state.isFormInvalid}
           sx={{ width: '40%' }}
           size="small"
           isLoading={state.isLoading}
