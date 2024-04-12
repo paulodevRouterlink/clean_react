@@ -1,4 +1,4 @@
-import { FocusEvent, forwardRef, InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 import classNames from 'classnames'
 import Styled from './input.module.scss'
 
@@ -11,13 +11,6 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ error, helperText, name, message, ...rest }, ref) => {
-    const enabledInput = (event: FocusEvent<HTMLInputElement>) => {
-      event.target.readOnly = false
-    }
-
-    const getStatus = (): string => (message ? '🔴' : '🟢')
-    const getError = (): string => message || 'Tudo Certo!'
-
     return (
       <div className={Styled.input_field}>
         <div className={Styled.input_field__wrap}>
@@ -28,13 +21,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             id={name}
             name={name}
             readOnly
-            onFocus={enabledInput}
+            onFocus={(event) => (event.target.readOnly = false)}
             className={classNames(Styled.input, {
               [Styled.input__invalid]: error,
             })}
           />
-          <span title={getError()} data-testid={`${name}-status`}>
-            {getStatus()}
+          <span data-testid={`${name}-status`} title={message || 'Tudo Certo!'}>
+            {message ? '🔴' : '🟢'}
           </span>
         </div>
 
