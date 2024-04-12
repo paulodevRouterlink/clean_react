@@ -8,7 +8,7 @@ export class FieldValidationSpy implements IFieldValidation {
 
   constructor(readonly field: string) { }
 
-  validate(input: object): Error {
+  validate(_input: object): Error {
     return this.error
   }
 }

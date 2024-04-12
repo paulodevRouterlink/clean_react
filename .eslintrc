@@ -1,8 +1,12 @@
 {
-  "extends": "@rocketseat/eslint-config/react",
+  "extends": [
+    "@rocketseat/eslint-config/react",
+    "plugin:cypress/recommended"
+  ],
   "plugins": [
     "unused-imports",
-    "react-refresh"
+    "react-refresh",
+    "cypress"
   ],
   "rules": {
     "@typescript-eslint/no-namespace": "off",
@@ -31,7 +35,8 @@
         "ignoreDeclarationSort": true,
         "ignoreMemberSort": false
       }
-    ],"import/order": [
+    ],
+    "import/order": [
       "error",
       {
         "groups": [
