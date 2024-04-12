@@ -55,6 +55,13 @@ describe('Login', () => {
   })
 
   it('Should present save accessToken if valid credentials provided', () => {
+    cy.intercept(
+      {
+        method: 'POST', // Route all GET requests
+        url: /signin/, // that have a URL that matches '/users/*'
+      },
+      [], // and force the response to be: []
+    ).as('getUsers')
     cy.getByTestId('email').focus().type(faker.internet.email())
     cy.getByTestId('password').focus().type(faker.string.alphanumeric(5))
     cy.getByTestId('submit').click()

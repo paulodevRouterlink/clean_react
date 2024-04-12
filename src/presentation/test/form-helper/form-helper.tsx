@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 
-const simulateValidSubmit = async (
+export const simulateValidSubmit = async (
   name = faker.internet.userName(),
   email = faker.internet.email(),
   password = faker.internet.password(),
@@ -15,7 +15,7 @@ const simulateValidSubmit = async (
   await waitFor(() => form)
 }
 
-const simulateValidSubmitSign = (
+export const simulateValidSubmitSign = (
   name = faker.internet.userName(),
   email = faker.internet.email(),
   password = faker.internet.password(),
@@ -28,7 +28,7 @@ const simulateValidSubmitSign = (
   fireEvent.click(submitButton)
 }
 
-const simulateValidSubmitLogin = async (
+export const simulateValidSubmitLogin = async (
   email = faker.internet.email(),
   password = faker.internet.password(),
 ): Promise<void> => {
@@ -39,7 +39,7 @@ const simulateValidSubmitLogin = async (
   await waitFor(() => form)
 }
 
-const simulateSubmitValidFormLogin = (
+export const simulateSubmitValidFormLogin = (
   email = faker.internet.email(),
   password = faker.internet.password(),
 ): void => {
@@ -49,17 +49,20 @@ const simulateSubmitValidFormLogin = (
   fireEvent.click(submitButton)
 }
 
-const testChildCount = (fieldName: string, count: number) => {
+export const testChildCount = (fieldName: string, count: number) => {
   const el = screen.getByTestId(fieldName)
   expect(el.childElementCount).toBe(count)
 }
 
-const testButtonIsDisabled = (fieldName: string, isDisabled: boolean) => {
+export const testButtonIsDisabled = (
+  fieldName: string,
+  isDisabled: boolean,
+) => {
   const submitButton = screen.getByTestId(fieldName) as HTMLButtonElement
   expect(submitButton.disabled).toBe(isDisabled)
 }
 
-const testStatusForField = (
+export const testStatusForField = (
   fieldName: string,
   validationError?: string,
 ): void => {
@@ -68,30 +71,20 @@ const testStatusForField = (
   expect(fieldStatus.textContent).toBe(validationError ? '🔴' : '🟢')
 }
 
-const populateField = (fieldName: string, value = faker.word.words()): void => {
+export const populateField = (
+  fieldName: string,
+  value = faker.word.words(),
+): void => {
   const input = screen.getByTestId(fieldName)
   fireEvent.input(input, { target: { value } })
 }
 
-const testElementExists = (fieldName: string): void => {
+export const testElementExists = (fieldName: string): void => {
   const el = screen.getByTestId(fieldName)
   expect(el).toBeTruthy()
 }
 
-const testElementText = (fieldName: string, text: string) => {
+export const testElementText = (fieldName: string, text: string) => {
   const element = screen.getByTestId(fieldName)
   expect(element.textContent).toBe(text)
-}
-
-export {
-  simulateSubmitValidFormLogin,
-  simulateValidSubmitLogin,
-  simulateValidSubmitSign,
-  simulateValidSubmit,
-  testButtonIsDisabled,
-  testStatusForField,
-  testElementExists,
-  testElementText,
-  testChildCount,
-  populateField,
 }
