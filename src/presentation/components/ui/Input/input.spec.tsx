@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Input } from './input'
 import { faker } from '@faker-js/faker'
+import { Input } from './input'
 
 const makeSut = (fieldName: string) => render(<Input name={fieldName} />)
 
