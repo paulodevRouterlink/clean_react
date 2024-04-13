@@ -1,3 +1,5 @@
+import { SurveyModel } from '@/domain/models'
+
 export interface ILoadSurveyList {
-  loadAll(): Promise<void>
+  loadAll(): Promise<SurveyModel[]>
 }
