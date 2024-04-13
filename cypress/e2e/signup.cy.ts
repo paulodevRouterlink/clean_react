@@ -2,12 +2,16 @@ import { faker } from '@faker-js/faker'
 import * as FormHelper from '../support/helpers/form-helpers'
 import * as Http from '../support/helpers/signup-mocks'
 
-const simulateFormSubmit = () => {
+const populateFieldsSignUp = () => {
   const password = faker.string.alphanumeric(5)
   cy.getByTestId('name').focus().type(faker.internet.displayName())
   cy.getByTestId('email').focus().type(faker.internet.email())
   cy.getByTestId('password').focus().type(password)
   cy.getByTestId('passwordConfirmation').focus().type(password)
+}
+
+const simulateFormSubmit = () => {
+  populateFieldsSignUp()
   cy.getByTestId('submit').click()
 }
 
@@ -71,11 +75,7 @@ describe('SignUp Component', () => {
 
   it('Should prevent multiple submits', () => {
     Http.mockOkay()
-    const password = faker.string.alphanumeric(5)
-    cy.getByTestId('name').focus().type(faker.internet.displayName())
-    cy.getByTestId('email').focus().type(faker.internet.email())
-    cy.getByTestId('password').focus().type(password)
-    cy.getByTestId('passwordConfirmation').focus().type(password)
+    populateFieldsSignUp()
     cy.getByTestId('submit').dblclick()
     cy.get('@request.all').should('have.length', 0)
   })
