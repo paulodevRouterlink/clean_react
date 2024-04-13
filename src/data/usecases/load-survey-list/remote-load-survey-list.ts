@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { IHttpGetClient } from '@/data/protocols/http'
+import { HttpStatusCode, IHttpGetClient } from '@/data/protocols/http'
+import { Errors } from '@/domain/errors'
 import { ILoadSurveyList } from '@/domain/usecases'
 
 export class RemoteLoadSurveyList implements ILoadSurveyList {
@@ -9,7 +10,13 @@ export class RemoteLoadSurveyList implements ILoadSurveyList {
   ) { }
 
   async loadAll(): Promise<void> {
-    await this.httpGetClient.get({ url: this.URL })
-    return Promise.resolve()
+    const httpResponse = await this.httpGetClient.get({ url: this.URL })
+
+    switch (httpResponse.statusCode) {
+      case HttpStatusCode.ok:
+        break
+      default:
+        throw new Errors.UnexpectedError()
+    }
   }
 }
