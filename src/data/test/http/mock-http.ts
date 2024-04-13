@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { faker } from '@faker-js/faker'
 import {
+  HttpGetClient,
   HttpGetParams,
   HttpPostClient,
   HttpPostParams,
   HttpResponse,
   HttpStatusCode,
-  IHttpGetClient,
 } from '@/data/protocols/http'
 
 export const mockPostRequest = (): HttpPostParams => ({
@@ -28,7 +28,7 @@ export class HttpPostClientSpy<R> implements HttpPostClient<R> {
   }
 }
 
-export class HttpGetClientSpy<R> implements IHttpGetClient<R> {
+export class HttpGetClientSpy<R> implements HttpGetClient<R> {
   url: string
   response: HttpResponse<R> = {
     statusCode: HttpStatusCode.ok,

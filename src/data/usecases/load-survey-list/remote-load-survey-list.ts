@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { HttpStatusCode, IHttpGetClient } from '@/data/protocols/http'
+import { HttpGetClient, HttpStatusCode } from '@/data/protocols/http'
 import { Errors } from '@/domain/errors'
 import { SurveyModel } from '@/domain/models'
 import { ILoadSurveyList } from '@/domain/usecases'
@@ -7,7 +7,7 @@ import { ILoadSurveyList } from '@/domain/usecases'
 export class RemoteLoadSurveyList implements ILoadSurveyList {
   constructor(
     private readonly URL: string,
-    private readonly httpGetClient: IHttpGetClient<SurveyModel[]>,
+    private readonly httpGetClient: HttpGetClient<SurveyModel[]>,
   ) { }
 
   async loadAll(): Promise<SurveyModel[]> {
