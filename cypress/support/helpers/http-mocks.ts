@@ -45,12 +45,7 @@ export const mockServerError = (url: RegExp, method: string): void => {
   ).as('request')
 }
 
-export const mockOk = (
-  url: RegExp,
-  method: string,
-  fixture: string,
-  alias: string = 'request',
-): void => {
+export const mockOk = (url: RegExp, method: string, response: object): void => {
   cy.intercept(
     {
       method,
@@ -58,7 +53,7 @@ export const mockOk = (
     },
     {
       statusCode: 200,
-      fixture,
+      response,
     },
-  ).as(alias)
+  ).as('request')
 }

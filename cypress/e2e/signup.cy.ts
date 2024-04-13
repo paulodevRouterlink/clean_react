@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import * as FormHelper from '../support/helpers/form-helpers'
-import { mockEmailInUserError } from '../support/helpers'
+import * as Http from '../support/helpers/signup-mocks'
 
 const simulateFormSubmit = () => {
   const password = faker.string.alphanumeric(5)
@@ -63,9 +63,20 @@ describe('SignUp Component', () => {
   })
 
   it('Should present EmailInUserError on 403', () => {
-    mockEmailInUserError()
+    Http.mockEmailInUserError()
     simulateFormSubmit()
     FormHelper.testErrorWrap()
     FormHelper.testUrl('signup')
+  })
+
+  it('Should prevent multiple submits', () => {
+    Http.mockOkay()
+    const password = faker.string.alphanumeric(5)
+    cy.getByTestId('name').focus().type(faker.internet.displayName())
+    cy.getByTestId('email').focus().type(faker.internet.email())
+    cy.getByTestId('password').focus().type(password)
+    cy.getByTestId('passwordConfirmation').focus().type(password)
+    cy.getByTestId('submit').dblclick()
+    cy.get('@request.all').should('have.length', 0)
   })
 })
