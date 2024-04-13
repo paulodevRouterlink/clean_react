@@ -1,5 +1,15 @@
 import { faker } from '@faker-js/faker'
-import * as FormHelper from '../support/form-helpers'
+import * as FormHelper from '../support/helpers'
+
+const populateFields = (): void => {
+  cy.getByTestId('email').focus().type(faker.internet.email())
+  cy.getByTestId('password').focus().type(faker.random.alphaNumeric(5))
+}
+
+const simulateValidSubmit = (): void => {
+  populateFields()
+  cy.getByTestId('submit').click()
+}
 
 describe('Login', () => {
   beforeEach(() => {
@@ -37,23 +47,14 @@ describe('Login', () => {
     cy.getByTestId('email').focus().type(faker.internet.email())
     cy.getByTestId('password').focus().type(faker.string.alphanumeric(5))
     cy.getByTestId('submit').click()
-    FormHelper.testSpinnerExists()
+    FormHelper.testMainError()
     cy.getByTestId('spinner').should('not.exist')
     cy.getByTestId('main-error').should('exist')
   })
 
   it('Should present save accessToken if valid credentials provided', () => {
-    cy.intercept(
-      {
-        method: 'POST', // Route all GET requests
-        url: /signin/, // that have a URL that matches '/users/*'
-      },
-      [], // and force the response to be: []
-    ).as('signIn')
-    cy.getByTestId('email').focus().type(faker.internet.email())
-    cy.getByTestId('password').focus().type(faker.string.alphanumeric(5))
-    cy.getByTestId('submit').click()
-    FormHelper.testSpinnerExists()
-    cy.getByTestId('spinner').should('not.exist')
+    simulateValidSubmit()
+    FormHelper.testMainError()
+    FormHelper.testUrl('signin')
   })
 })

@@ -1,12 +1,22 @@
 import { faker } from '@faker-js/faker'
-import * as FormHelper from '../support/form-helpers'
+import * as FormHelper from '../support/helpers/form-helpers'
+import { mockEmailInUserError } from '../support/helpers'
+
+const simulateFormSubmit = () => {
+  const password = faker.string.alphanumeric(5)
+  cy.getByTestId('name').focus().type(faker.internet.displayName())
+  cy.getByTestId('email').focus().type(faker.internet.email())
+  cy.getByTestId('password').focus().type(password)
+  cy.getByTestId('passwordConfirmation').focus().type(password)
+  cy.getByTestId('submit').click()
+}
 
 describe('SignUp Component', () => {
   beforeEach(() => {
     cy.visit('signup')
   })
 
-  it('should ', () => {
+  it('Should load with correct initial state', () => {
     cy.getByTestId('name').should('have.attr', 'readonly')
     FormHelper.testInputStatus('name', 'Campo Obrigatório', '🔴')
     cy.getByTestId('email').should('have.attr', 'readonly')
@@ -36,5 +46,26 @@ describe('SignUp Component', () => {
     FormHelper.testInputStatus('passwordConfirmation', 'Valor inválido', '🔴')
     cy.getByTestId('submit').should('have.attr', 'disabled')
     FormHelper.testErrorWrap()
+  })
+
+  it('Should present valid state if form is valid', () => {
+    const password = faker.string.alphanumeric(5)
+    cy.getByTestId('name').focus().type(faker.internet.displayName())
+    FormHelper.testInputStatus('name', 'Tudo Certo!', '🟢')
+    cy.getByTestId('email').focus().type(faker.internet.email())
+    FormHelper.testInputStatus('email', 'Tudo Certo!', '🟢')
+    cy.getByTestId('password').focus().type(password)
+    FormHelper.testInputStatus('password', 'Tudo Certo!', '🟢')
+    cy.getByTestId('passwordConfirmation').focus().type(password)
+    FormHelper.testInputStatus('passwordConfirmation', 'Tudo Certo!', '🟢')
+    cy.getByTestId('submit').should('not.have.attr', 'disabled')
+    FormHelper.testErrorWrap()
+  })
+
+  it('Should present EmailInUserError on 403', () => {
+    mockEmailInUserError()
+    simulateFormSubmit()
+    FormHelper.testErrorWrap()
+    FormHelper.testUrl('signup')
   })
 })
