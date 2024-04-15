@@ -15,7 +15,7 @@ describe('CompareFieldsValidation', () => {
     const sut = makeSut(field, fieldToCompare)
     const error = sut.validate({
       [field]: faker.word.words(2),
-      [fieldToCompare]: faker.word.words(6),
+      [fieldToCompare]: faker.word.words(4),
     })
     expect(error).toEqual(new ValidateError.InvalidFieldError())
   })

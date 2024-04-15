@@ -10,6 +10,6 @@ export class LocalSaveCurrentAccount implements ISaveCurrentAccount {
     if (!account?.accessToken) {
       throw new Errors.UnexpectedError()
     }
-    await this.setStorage.set('account', JSON.stringify(account))
+    this.setStorage.set('account', JSON.stringify(account))
   }
 }
