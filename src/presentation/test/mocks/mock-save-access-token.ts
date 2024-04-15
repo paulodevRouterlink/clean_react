@@ -1,11 +1,12 @@
 /* eslint-disable unused-imports/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ISaveAccessToken } from '@/domain/usecases'
+import { AccountModel } from '@/domain/models'
+import { ISaveCurrentAccount } from '@/domain/usecases'
 
-export class SaveAccessTokenMock implements ISaveAccessToken {
-  accessToken: string
+export class SaveCurrentAccountMock implements ISaveCurrentAccount {
+  account: AccountModel
 
-  async save(accessToken): Promise<void> {
-    this.accessToken = accessToken
+  async save(account: AccountModel): Promise<void> {
+    this.account = account
   }
 }

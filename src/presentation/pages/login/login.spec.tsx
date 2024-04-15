@@ -5,14 +5,14 @@ import { Login } from '@/presentation/pages'
 import {
   AuthenticationSpy,
   Helper,
-  SaveAccessTokenMock,
+  SaveCurrentAccountMock,
   ValidationStub,
 } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
 
 type SutTypes = {
   authenticationSpy: AuthenticationSpy
-  saveAccessTokenMock: SaveAccessTokenMock
+  saveCurrentAccountMock: SaveCurrentAccountMock
 }
 
 type SutParams = {
@@ -22,7 +22,7 @@ type SutParams = {
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
-  const saveAccessTokenMock = new SaveAccessTokenMock()
+  const saveCurrentAccountMock = new SaveCurrentAccountMock()
   validationStub.errorMessage = params?.validationError
 
   render(
@@ -30,14 +30,14 @@ const makeSut = (params?: SutParams): SutTypes => {
       <Login
         validation={validationStub}
         authentication={authenticationSpy}
-        saveAccessToken={saveAccessTokenMock}
+        saveCurrentAccount={saveCurrentAccountMock}
       />
     </BrowserRouter>,
   )
 
   return {
     authenticationSpy,
-    saveAccessTokenMock,
+    saveCurrentAccountMock,
   }
 }
 
@@ -127,19 +127,17 @@ describe('Login Component', () => {
   })
 
   test('Should call SaveAccessToken on success', async () => {
-    const { authenticationSpy, saveAccessTokenMock } = makeSut()
+    const { authenticationSpy, saveCurrentAccountMock } = makeSut()
     Helper.simulateSubmitValidFormLogin()
     await waitFor(() => screen.getByTestId('form'))
-    expect(saveAccessTokenMock.accessToken).toBe(
-      authenticationSpy.account.accessToken,
-    )
+    expect(saveCurrentAccountMock.account).toEqual(authenticationSpy.account)
   })
 
   test.skip('Should prevent error if SaveAccessToken fails', async () => {
-    const { saveAccessTokenMock } = makeSut()
+    const { saveCurrentAccountMock } = makeSut()
     const error = new Errors.InvalidCredentialsError()
     jest
-      .spyOn(saveAccessTokenMock, 'save')
+      .spyOn(saveCurrentAccountMock, 'save')
       .mockReturnValueOnce(Promise.reject(error))
     Helper.simulateSubmitValidFormLogin()
     const errorWrap = screen.getByTestId('error-wrap')

@@ -5,14 +5,14 @@ import { SignUp } from './sign-up'
 import {
   AddAccountSpy,
   Helper,
-  SaveAccessTokenMock,
+  SaveCurrentAccountMock,
   ValidationStub,
 } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
 
 type SutTypes = {
   addAccountSpy: AddAccountSpy
-  saveAccessTokenMock: SaveAccessTokenMock
+  saveAccessTokenMock: SaveCurrentAccountMock
 }
 
 type SutParams = {
@@ -23,13 +23,13 @@ const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
   const addAccountSpy = new AddAccountSpy()
-  const saveAccessTokenMock = new SaveAccessTokenMock()
+  const saveAccessTokenMock = new SaveCurrentAccountMock()
   render(
     <BrowserRouter>
       <SignUp
         validation={validationStub}
         addAccount={addAccountSpy}
-        saveAccessToken={saveAccessTokenMock}
+        saveCurrentAccount={saveAccessTokenMock}
       />
     </BrowserRouter>,
   )
@@ -160,9 +160,7 @@ describe('SignUp Component', () => {
     const { addAccountSpy, saveAccessTokenMock } = makeSut()
     Helper.simulateValidSubmitSign()
     await waitFor(() => screen.getByTestId('form'))
-    expect(saveAccessTokenMock.accessToken).toBe(
-      addAccountSpy.account.accessToken,
-    )
+    expect(saveAccessTokenMock.account).toEqual(addAccountSpy.account)
   })
 
   test.skip('Should prevent error if SaveAccessToken fails', async () => {

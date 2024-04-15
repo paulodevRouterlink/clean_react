@@ -6,7 +6,7 @@ import { LoginPageProps } from '../login'
 const useLogin = ({
   validation,
   authentication,
-  saveAccessToken,
+  saveCurrentAccount,
 }: LoginPageProps) => {
   const [state, setState] = useState({
     isLoading: false,
@@ -48,7 +48,7 @@ const useLogin = ({
         email: state.email,
         password: state.password,
       })
-      await saveAccessToken.save(account.accessToken)
+      await saveCurrentAccount.save(account)
     } catch (error) {
       setState({
         ...state,

@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Props } from '../sign-up'
 
-const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
+const useSignUp = ({ validation, addAccount, saveCurrentAccount }: Props) => {
   const navigate = useNavigate()
   const [state, setState] = useState({
     isLoading: false,
@@ -67,7 +67,7 @@ const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
         password: state.password,
         passwordConfirmation: state.passwordConfirmation,
       })
-      await saveAccessToken.save(account.accessToken)
+      await saveCurrentAccount.save(account)
     } catch (error) {
       setState({
         ...state,

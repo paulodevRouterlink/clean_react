@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { AiOutlineLogin } from 'react-icons/ai'
 import { Button, FormStatus, Input } from '@/presentation/components/ui'
 import { IValidation } from '@/presentation/protocols/validation'
-import { IAuthentication, ISaveAccessToken } from '@/domain/usecases'
+import { IAuthentication, ISaveCurrentAccount } from '@/domain/usecases'
 import { useLogin } from './hook/useLogin'
 import Styled from './login.module.scss'
 import { FormContext } from '@/presentation/contexts/form'
@@ -10,18 +10,18 @@ import { FormContext } from '@/presentation/contexts/form'
 export type LoginPageProps = {
   validation: IValidation
   authentication: IAuthentication
-  saveAccessToken: ISaveAccessToken
+  saveCurrentAccount: ISaveCurrentAccount
 }
 
 const Login: FC<LoginPageProps> = ({
   validation,
   authentication,
-  saveAccessToken,
+  saveCurrentAccount,
 }) => {
   const { handlerNavigate, handlerLogin, handleChange, state } = useLogin({
     validation,
     authentication,
-    saveAccessToken,
+    saveCurrentAccount,
   })
 
   return (
