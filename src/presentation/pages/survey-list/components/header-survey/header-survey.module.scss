@@ -1,0 +1,43 @@
+@use '@/presentation/scss/main';
+
+.survey_list__header {
+  background: main.$primary;
+  border-top: main.$spacing-10 solid main.$dark;
+  display: flex;
+  justify-content: center;
+  padding: main.spacing(8px) main.spacing(5px);
+
+  .header__content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    flex-grow: 1;
+
+    img {
+      @include main.size(4rem);
+      align-self: center;
+    }
+
+    .header__wrap {
+      align-self: center;
+      display: flex;
+      flex-direction: main.$flex-col;
+      align-items: flex-end;
+      justify-content: center;
+      color: main.$white;
+
+      span {
+        font-size: main.$font-xl;
+        margin-bottom: main.spacing(8px);
+      }
+
+      a {
+        color: main.$white;
+
+        &:hover {
+          color: main.$warning;
+        }
+      }
+    }
+  }
+}
