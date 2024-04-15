@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Footer } from '@/presentation/components/layout'
-import Styled from './survey-list.module.scss'
 import { CardSurvey, HeaderSurvey } from './components'
+import Styled from './survey-list.module.scss'
 
 const SurveyList: FC = () => {
   return (
