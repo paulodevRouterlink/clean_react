@@ -40,4 +40,9 @@
       }
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    border-top-width: main.spacing(20px);
+    padding: main.spacing(8px) main.spacing(20px);
+  }
 }

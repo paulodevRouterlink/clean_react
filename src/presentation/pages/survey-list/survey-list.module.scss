@@ -24,4 +24,14 @@
     flex-wrap: main.$flex-wrap;
     justify-content: space-between;
   }
+
+  @media only screen and (max-width: 600px) {
+    ul {
+      flex-direction: main.$flex-col;
+
+      li {
+        flex-basis: 100%;
+      }
+    }
+  }
 }

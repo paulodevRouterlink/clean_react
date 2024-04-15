@@ -1,7 +1,6 @@
 @use '@/presentation/scss/main';
 
 li {
-  height: 250px;
   background-color: main.$scarlet-200;
   display: flex;
   flex-direction: main.$flex-col;
@@ -13,6 +12,7 @@ li {
 
 
   .survey_content {
+    height: 250px;
     border-top-left-radius: main.$rounded-lg;
     border-top-right-radius: main.$rounded-lg;
     display: flex;
@@ -66,6 +66,7 @@ li {
       font-size: main.$font-lg;
       margin-inline: main.spacing(20px);
       align-self: center;
+      flex-grow: 1;
     }
   }
 
