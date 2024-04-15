@@ -1,0 +1,8 @@
+@use '@/presentation/scss/main';
+
+.survey_list {
+  display: flex;
+  flex-direction: main.$flex-col;
+  justify-content: space-between;
+  min-height: 100vh;
+}

@@ -1,34 +1,27 @@
 @use "@/presentation/scss/main";
 
-.survey_list {
+.survey_list__content {
   display: flex;
   flex-direction: main.$flex-col;
-  justify-content: space-between;
-  min-height: 100vh;
+  align-self: center;
+  max-width: 800px;
+  width: 100%;
+  flex-grow: 1;
+  padding: main.spacing(20px);
 
-  &__content {
+  h2 {
+    color: main.$primary;
+    font-size: main.$font-3xl;
+    font-weight: main.$font-bold;
+    font-family: main.$font-luckiest;
+    text-transform: uppercase;
+    margin-bottom: main.spacing(24px);
+  }
+
+  ul {
     display: flex;
-    flex-direction: main.$flex-col;
-    align-self: center;
-    max-width: 800px;
-    width: 100%;
-    flex-grow: 1;
-    padding: main.spacing(20px);
-
-    h2 {
-      color: main.$primary;
-      font-size: main.$font-3xl;
-      font-weight: main.$font-bold;
-      font-family: main.$font-luckiest;
-      text-transform: uppercase;
-      margin-bottom: main.spacing(24px);
-    }
-
-    ul {
-      display: flex;
-      flex-direction: main.$flex-row;
-      flex-wrap: main.$flex-wrap;
-      justify-content: space-between;
-    }
+    flex-direction: main.$flex-row;
+    flex-wrap: main.$flex-wrap;
+    justify-content: space-between;
   }
 }
