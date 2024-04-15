@@ -6,7 +6,7 @@ import {
 } from '@/main/factory/usecases'
 import { makeLoginValidate } from './login-validate-factory'
 
-export const makeLogin: FC = () => (
+export const MakeLogin: FC = () => (
   <Login
     validation={makeLoginValidate()}
     authentication={makeRemoteAuthentication()}

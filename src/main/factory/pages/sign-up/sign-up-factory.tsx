@@ -6,12 +6,10 @@ import {
   makeRemoteAddAccount,
 } from '@/main/factory/usecases'
 
-export const makeSignUp: FC = () => {
-  return (
-    <SignUp
-      addAccount={makeRemoteAddAccount()}
-      validation={makeSignUpValidation()}
-      saveCurrentAccount={makeLocalSaveCurrentAccount()}
-    />
-  )
-}
+export const MakeSignUp: FC = () => (
+  <SignUp
+    addAccount={makeRemoteAddAccount()}
+    validation={makeSignUpValidation()}
+    saveCurrentAccount={makeLocalSaveCurrentAccount()}
+  />
+)
