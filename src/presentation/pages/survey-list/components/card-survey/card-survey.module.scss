@@ -1,6 +1,7 @@
 @use '@/presentation/scss/main';
 
 li {
+  height: 250px;
   background-color: main.$scarlet-200;
   display: flex;
   flex-direction: main.$flex-col;
