@@ -27,42 +27,10 @@ li {
     background-size: 54px 100%, 100% 100%;
     position: relative;
 
-    .icon_wrapper {
+    .icon_container {
       position: absolute;
       top: 5px;
       right: 5px;
-      padding: main.spacing(2px);
-      border-radius: main.$rounded-lg;
-      box-shadow: main.$shadow-2xl;
-      cursor: pointer;
-
-      display: flex;
-      align-items: center;
-
-      transition: all 0.2s ease-in-out;
-
-      &__green {
-        background: main.$primary;
-      }
-
-      &__red {
-        background: main.$danger;
-      }
-
-      .icon {
-        color: main.$white;
-      }
-
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: none;
-      }
-
-      &:active {
-        transform: translateY(2px);
-        box-shadow: none;
-      }
     }
 
     time {

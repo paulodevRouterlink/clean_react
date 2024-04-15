@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { CardSurvey } from './components'
+
 import Styled from './survey-list.module.scss'
 
 const SurveyList: FC = () => {
