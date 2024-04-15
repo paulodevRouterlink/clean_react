@@ -2,17 +2,14 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { faker } from '@faker-js/faker'
 import { SignUp } from './sign-up'
-import {
-  AddAccountSpy,
-  Helper,
-  SaveCurrentAccountMock,
-  ValidationStub,
-} from '@/presentation/test'
+import { AddAccountSpy, Helper, ValidationStub } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
+import { AppContext } from '@/presentation/contexts/api'
+import { AccountModel } from '@/domain/models'
 
 type SutTypes = {
   addAccountSpy: AddAccountSpy
-  saveAccessTokenMock: SaveCurrentAccountMock
+  setCurrentAccountMock(account: AccountModel): void
 }
 
 type SutParams = {
@@ -23,18 +20,16 @@ const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
   const addAccountSpy = new AddAccountSpy()
-  const saveAccessTokenMock = new SaveCurrentAccountMock()
+  const setCurrentAccountMock = jest.fn()
   render(
-    <BrowserRouter>
-      <SignUp
-        validation={validationStub}
-        addAccount={addAccountSpy}
-        saveCurrentAccount={saveAccessTokenMock}
-      />
-    </BrowserRouter>,
+    <AppContext.Provider value={{ setCurrentAccount: setCurrentAccountMock }}>
+      <BrowserRouter>
+        <SignUp validation={validationStub} addAccount={addAccountSpy} />
+      </BrowserRouter>
+    </AppContext.Provider>,
   )
 
-  return { addAccountSpy, saveAccessTokenMock }
+  return { addAccountSpy, setCurrentAccountMock }
 }
 
 describe('SignUp Component', () => {
@@ -157,21 +152,9 @@ describe('SignUp Component', () => {
   })
 
   test('Should call SaveAccessToken on success', async () => {
-    const { addAccountSpy, saveAccessTokenMock } = makeSut()
+    const { addAccountSpy, setCurrentAccountMock } = makeSut()
     Helper.simulateValidSubmitSign()
     await waitFor(() => screen.getByTestId('form'))
-    expect(saveAccessTokenMock.account).toEqual(addAccountSpy.account)
-  })
-
-  test.skip('Should prevent error if SaveAccessToken fails', async () => {
-    const { saveAccessTokenMock } = makeSut()
-    const error = new Errors.EmailInUseError()
-    jest.spyOn(saveAccessTokenMock, 'save').mockRejectedValueOnce(error)
-    await Helper.simulateValidSubmit()
-    // const errorWrap = screen.getByTestId('error-wrap')
-    // await waitFor(() => errorWrap)
-    Helper.testElementText('main-error', error.message)
-    Helper.testChildCount('error-wrap', 1)
-    // expect(errorWrap.childElementCount).toBe(1)
+    expect(setCurrentAccountMock).toHaveBeenCalledWith(addAccountSpy.account)
   })
 })

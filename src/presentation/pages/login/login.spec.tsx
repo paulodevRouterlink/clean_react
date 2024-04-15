@@ -2,17 +2,14 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 import { BrowserRouter } from 'react-router-dom'
 import { Login } from '@/presentation/pages'
-import {
-  AuthenticationSpy,
-  Helper,
-  SaveCurrentAccountMock,
-  ValidationStub,
-} from '@/presentation/test'
+import { AuthenticationSpy, Helper, ValidationStub } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
+import { AppContext } from '@/presentation/contexts/api'
+import { AccountModel } from '@/domain/models'
 
 type SutTypes = {
   authenticationSpy: AuthenticationSpy
-  saveCurrentAccountMock: SaveCurrentAccountMock
+  setCurrentAccountMock(account: AccountModel): void
 }
 
 type SutParams = {
@@ -22,22 +19,21 @@ type SutParams = {
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   const authenticationSpy = new AuthenticationSpy()
-  const saveCurrentAccountMock = new SaveCurrentAccountMock()
+  const setCurrentAccountMock = jest.fn()
   validationStub.errorMessage = params?.validationError
 
   render(
-    <BrowserRouter>
-      <Login
-        validation={validationStub}
-        authentication={authenticationSpy}
-        saveCurrentAccount={saveCurrentAccountMock}
-      />
-    </BrowserRouter>,
+    <AppContext.Provider value={{ setCurrentAccount: setCurrentAccountMock }}>
+      <BrowserRouter>
+        <Login validation={validationStub} authentication={authenticationSpy} />
+      </BrowserRouter>
+      ,
+    </AppContext.Provider>,
   )
 
   return {
     authenticationSpy,
-    saveCurrentAccountMock,
+    setCurrentAccountMock,
   }
 }
 
@@ -127,35 +123,11 @@ describe('Login Component', () => {
   })
 
   test('Should call SaveAccessToken on success', async () => {
-    const { authenticationSpy, saveCurrentAccountMock } = makeSut()
+    const { authenticationSpy, setCurrentAccountMock } = makeSut()
     Helper.simulateSubmitValidFormLogin()
     await waitFor(() => screen.getByTestId('form'))
-    expect(saveCurrentAccountMock.account).toEqual(authenticationSpy.account)
+    expect(setCurrentAccountMock).toHaveBeenCalledWith(
+      authenticationSpy.account,
+    )
   })
-
-  test.skip('Should prevent error if SaveAccessToken fails', async () => {
-    const { saveCurrentAccountMock } = makeSut()
-    const error = new Errors.InvalidCredentialsError()
-    jest
-      .spyOn(saveCurrentAccountMock, 'save')
-      .mockReturnValueOnce(Promise.reject(error))
-    Helper.simulateSubmitValidFormLogin()
-    const errorWrap = screen.getByTestId('error-wrap')
-    await waitFor(() => errorWrap)
-    Helper.testElementText('main-error', error.message)
-    expect(errorWrap.childElementCount).toBe(1)
-  })
-
-  // test('Should present error if Authentication fails', async () => {
-  //   const { sut, authenticationSpy } = makeSut()
-  //   const error = new Errors.InvalidCredentialsError()
-  //   jest
-  //     .spyOn(authenticationSpy, 'auth')
-  //     .mockReturnValueOnce(Promise.reject(error))
-  //   simulateValidSubmit(sut)
-  //   const helperText = sut.getByTestId('helper-text')
-  //   await waitFor(() => helperText)
-  //   const mainError = sut.getByTestId('main-error')
-  //   expect(mainError.textContent).toBe(error)
-  // })
 })

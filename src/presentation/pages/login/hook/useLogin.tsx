@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LoginPageProps } from '../login'
+import { AppContext } from '@/presentation/contexts/api'
 
-const useLogin = ({
-  validation,
-  authentication,
-  saveCurrentAccount,
-}: LoginPageProps) => {
+const useLogin = ({ validation, authentication }: LoginPageProps) => {
+  const { setCurrentAccount } = useContext(AppContext)
   const [state, setState] = useState({
     isLoading: false,
     isFormInvalid: true,
@@ -48,7 +46,7 @@ const useLogin = ({
         email: state.email,
         password: state.password,
       })
-      await saveCurrentAccount.save(account)
+      setCurrentAccount(account)
     } catch (error) {
       setState({
         ...state,
