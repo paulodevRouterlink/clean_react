@@ -8,13 +8,15 @@ type CardSurveyProps = {
 }
 
 const CardSurvey: FC<CardSurveyProps> = ({ survey }) => {
+  const icon = survey.didAnswer ? IconName.thumbUp : IconName.thumbDown
+
   return (
     <li>
       <div className={Styled.survey_content}>
-        <Icon icon={IconName.thumbUp} className={Styled.icon_container} />
+        <Icon icon={icon} className={Styled.icon_container} />
         <time>
           <span data-testid="day" className={Styled.day}>
-            {survey.date.getDate()}
+            {survey.date.getDate().toString().padStart(2, '0')}
           </span>
           <span data-testid="month" className={Styled.month}>
             {survey.date
