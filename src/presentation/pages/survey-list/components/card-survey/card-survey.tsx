@@ -11,7 +11,7 @@ const CardSurvey: FC<CardSurveyProps> = ({ survey }) => {
   const icon = survey.didAnswer ? IconName.thumbUp : IconName.thumbDown
 
   return (
-    <li>
+    <li className={Styled.survey_wrap}>
       <div className={Styled.survey_content}>
         <Icon icon={icon} className={Styled.icon_container} />
         <time>

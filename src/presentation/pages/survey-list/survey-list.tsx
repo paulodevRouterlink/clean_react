@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect } from 'react'
-import { CardSurveyEmpty } from './components'
+import { CardSurvey, CardSurveyEmpty } from './components'
 import Styled from './survey-list.module.scss'
 import { ILoadSurveyList } from '@/domain/usecases'
 import { useSurveyList } from './hook/useSurveyList'
@@ -10,7 +10,7 @@ type SurveyProps = {
 }
 
 const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
-  const { handlerSurveyLoadAll } = useSurveyList({ loadSurveyList })
+  const { state, handlerSurveyLoadAll } = useSurveyList({ loadSurveyList })
 
   useEffect(() => {
     handlerSurveyLoadAll()
@@ -20,7 +20,13 @@ const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
     <div className={Styled.survey_list__content}>
       <h2>Enquete</h2>
       <ul data-testid="survey-list">
-        <CardSurveyEmpty />
+        {state.surveys.length ? (
+          state.surveys.map((props) => (
+            <CardSurvey key={props.id} survey={props} />
+          ))
+        ) : (
+          <CardSurveyEmpty />
+        )}
       </ul>
     </div>
   )
