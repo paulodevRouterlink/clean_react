@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 import { BrowserRouter } from 'react-router-dom'
 import { Login } from '@/presentation/pages'
@@ -38,8 +38,6 @@ const makeSut = (params?: SutParams): SutTypes => {
 }
 
 describe('Login Component', () => {
-  afterEach(cleanup)
-
   test('Should start initial state', () => {
     const validationError = faker.word.words()
     makeSut({ validationError })
