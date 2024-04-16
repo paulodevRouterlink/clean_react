@@ -19,15 +19,22 @@ const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
   return (
     <div className={Styled.survey_list__content}>
       <h2>Enquete</h2>
-      <ul data-testid="survey-list">
-        {state.surveys.length ? (
-          state.surveys.map((props) => (
-            <CardSurvey key={props.id} survey={props} />
-          ))
-        ) : (
-          <CardSurveyEmpty />
-        )}
-      </ul>
+      {state.error ? (
+        <div>
+          <span data-testid="error">{state.error}</span>
+          <button>Recarregar</button>
+        </div>
+      ) : (
+        <ul data-testid="survey-list">
+          {state.surveys.length ? (
+            state.surveys.map((props) => (
+              <CardSurvey key={props.id} survey={props} />
+            ))
+          ) : (
+            <CardSurveyEmpty />
+          )}
+        </ul>
+      )}
     </div>
   )
 }
