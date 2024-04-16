@@ -31,7 +31,6 @@ describe('Name of the group', () => {
 
   test('Should call LoadSurveyList', () => {
     const { loadSurveyListSpy } = makeSut()
-    // const surveyList = screen.getByTestId('survey-list')
     expect(loadSurveyListSpy.callsCount).toBe(1)
   })
 })
