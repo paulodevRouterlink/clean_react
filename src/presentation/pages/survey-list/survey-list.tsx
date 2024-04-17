@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { CardSurvey, CardSurveyEmpty } from './components'
 import Styled from './survey-list.module.scss'
 import { ILoadSurveyList } from '@/domain/usecases'
@@ -10,11 +10,7 @@ type SurveyProps = {
 }
 
 const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
-  const { state, handlerSurveyLoadAll } = useSurveyList({ loadSurveyList })
-
-  useEffect(() => {
-    handlerSurveyLoadAll()
-  }, [])
+  const { state } = useSurveyList({ loadSurveyList })
 
   return (
     <div className={Styled.survey_list__content}>

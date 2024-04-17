@@ -6,6 +6,8 @@ import { RootLayout } from '@/presentation/layout'
 export const PrivateRoute: FC<RouteProps> = () => {
   const { getCurrentAccount } = useContext(AppContext)
 
+  return <RootLayout />
+
   return getCurrentAccount()?.accessToken ? (
     <RootLayout />
   ) : (

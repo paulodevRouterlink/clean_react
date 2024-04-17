@@ -1,4 +1,5 @@
-import { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react'
 import { SurveyProps } from '../survey-list'
 import { SurveyModel } from '@/domain/models'
 
@@ -8,14 +9,14 @@ const useSurveyList = ({ loadSurveyList }: SurveyProps) => {
     error: '',
   })
 
-  async function handlerSurveyLoadAll() {
-    await loadSurveyList
+  useEffect(() => {
+    loadSurveyList
       .loadAll()
       .then((surveys) => setState({ ...state, surveys }))
       .catch((error) => setState({ ...state, error: error.message }))
-  }
+  }, [])
 
-  return { state, setState, handlerSurveyLoadAll }
+  return { state }
 }
 
 export { useSurveyList }
