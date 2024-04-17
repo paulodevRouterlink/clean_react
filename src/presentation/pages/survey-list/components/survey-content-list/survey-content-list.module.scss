@@ -1,0 +1,8 @@
+@use '@/presentation/scss/main';
+
+.survey_content {
+  display: flex;
+  flex-direction: main.$flex-row;
+  flex-wrap: main.$flex-wrap;
+  justify-content: space-between;
+}

@@ -1,9 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { FC } from 'react'
-import { CardSurvey, CardSurveyEmpty } from './components'
-import Styled from './survey-list.module.scss'
+import { Error, SurveyContentList } from './components'
 import { ILoadSurveyList } from '@/domain/usecases'
 import { useSurveyList } from './hook/useSurveyList'
+import Styled from './survey-list.module.scss'
 
 type SurveyProps = {
   loadSurveyList: ILoadSurveyList
@@ -16,20 +15,9 @@ const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
     <div className={Styled.survey_list__content}>
       <h2>Enquete</h2>
       {state.error ? (
-        <div>
-          <span data-testid="error">{state.error}</span>
-          <button>Recarregar</button>
-        </div>
+        <Error state={state} />
       ) : (
-        <ul data-testid="survey-list">
-          {state.surveys.length ? (
-            state.surveys.map((props) => (
-              <CardSurvey key={props.id} survey={props} />
-            ))
-          ) : (
-            <CardSurveyEmpty />
-          )}
-        </ul>
+        <SurveyContentList state={state} />
       )}
     </div>
   )
