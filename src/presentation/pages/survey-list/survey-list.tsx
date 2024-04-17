@@ -1,14 +1,10 @@
 import { FC } from 'react'
 import { Error, SurveyContentList } from './components'
-import { ILoadSurveyList } from '@/domain/usecases'
 import { useSurveyList } from './hook/useSurveyList'
+import { SurveyState } from './types'
 import Styled from './survey-list.module.scss'
 
-type SurveyProps = {
-  loadSurveyList: ILoadSurveyList
-}
-
-const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
+const SurveyList: FC<SurveyState.Types> = ({ loadSurveyList }) => {
   const { state, setState } = useSurveyList({ loadSurveyList })
 
   return (
@@ -24,4 +20,3 @@ const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
 }
 
 export { SurveyList }
-export type { SurveyProps }

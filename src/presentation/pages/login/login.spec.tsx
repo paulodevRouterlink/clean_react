@@ -2,14 +2,15 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
 import { BrowserRouter } from 'react-router-dom'
 import { Login } from '@/presentation/pages'
-import { AuthenticationSpy, Helper, ValidationStub } from '@/presentation/test'
+import { Helper, ValidationStub } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
 import { AppContext } from '@/presentation/contexts/api'
-import { AccountModel } from '@/domain/models'
+import { Authentication } from '@/domain/usecases'
+import { AuthenticationSpy } from '@/domain/test'
 
 type SutTypes = {
   authenticationSpy: AuthenticationSpy
-  setCurrentAccountMock(account: AccountModel): void
+  setCurrentAccountMock(account: Authentication.Model): void
 }
 
 type SutParams = {

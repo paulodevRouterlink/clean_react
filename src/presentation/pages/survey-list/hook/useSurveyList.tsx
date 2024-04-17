@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
-import { SurveyProps } from '../survey-list'
-import { SurveyModel } from '@/domain/models'
-import { SurveyStateParams } from '../types'
+import { LoadSurveyList } from '@/domain/usecases'
+import { SurveyState } from '../types'
 
-const useSurveyList = ({ loadSurveyList }: SurveyProps) => {
-  const [state, setState] = useState<SurveyStateParams>({
-    surveys: [] as SurveyModel[],
+const useSurveyList = ({ loadSurveyList }: SurveyState.Types) => {
+  const [state, setState] = useState<SurveyState.Params>({
+    surveys: [] as LoadSurveyList.Model[],
     error: '',
     reload: false,
   })

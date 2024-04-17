@@ -1,16 +1,15 @@
 /* eslint-disable prettier/prettier */
-import { AuthParams,  IAuthentication} from '@/domain/usecases/auth/auth'
+import {  Authentication,  IAuthentication} from '@/domain/usecases/auth/auth'
 import { HttpPostClient, HttpStatusCode } from '@/data/protocols/http'
-import { AccountModel } from '@/domain/models/account-models'
 import { Errors } from '@/domain/errors'
 
 export class RemoteAuthentication implements IAuthentication {
   constructor(
     private readonly url: string,
-    private readonly httpPostClient: HttpPostClient<AuthParams, AccountModel>,
+    private readonly httpPostClient: HttpPostClient<RemoteAuthentication.Model>,
   ) { }
 
-  async auth(params: AuthParams): Promise<AccountModel> {
+  async auth(params: Authentication.Params): Promise<Authentication.Model> {
     const httpResponse = await this.httpPostClient.post({
       url: this.url,
       body: params,
@@ -25,4 +24,8 @@ export class RemoteAuthentication implements IAuthentication {
         throw new Errors.UnexpectedError()
     }
   }
+}
+
+export namespace RemoteAuthentication {
+  export type Model = Authentication.Model
 }

@@ -1,16 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { HttpGetClient, HttpStatusCode } from '@/data/protocols/http'
 import { Errors } from '@/domain/errors'
-import { SurveyModel } from '@/domain/models'
-import { ILoadSurveyList } from '@/domain/usecases'
+import { ILoadSurveyList, LoadSurveyList } from '@/domain/usecases'
 
 export class RemoteLoadSurveyList implements ILoadSurveyList {
   constructor(
     private readonly URL: string,
-    private readonly httpGetClient: HttpGetClient<SurveyModel[]>,
+    private readonly httpGetClient: HttpGetClient<RemoteLoadSurveyList.Model[]>,
   ) { }
 
-  async loadAll(): Promise<SurveyModel[]> {
+  async loadAll(): Promise<LoadSurveyList.Model[]> {
     const httpResponse = await this.httpGetClient.get({ url: this.URL })
 
     switch (httpResponse.statusCode) {
@@ -22,4 +21,8 @@ export class RemoteLoadSurveyList implements ILoadSurveyList {
         throw new Errors.UnexpectedError()
     }
   }
+}
+
+export namespace RemoteLoadSurveyList {
+  export type Model = LoadSurveyList.Model
 }

@@ -1,16 +1,13 @@
 import { Dispatch, FC, SetStateAction } from 'react'
-import {
-  SurveyStateParams,
-  SurveyStateProps,
-} from '@/presentation/pages/survey-list/types'
+import { SurveyState } from '@/presentation/pages/survey-list/types'
 import Styled from './error.module.scss'
 
 type SurveySetStateProps = {
-  setState: Dispatch<SetStateAction<SurveyStateParams>>
+  setState: Dispatch<SetStateAction<SurveyState.Params>>
 }
 
 type ErrorProps = {
-  props: SurveyStateProps & SurveySetStateProps
+  props: SurveyState.Props & SurveySetStateProps
 }
 
 const Error: FC<ErrorProps> = ({ props: { state, setState } }) => {

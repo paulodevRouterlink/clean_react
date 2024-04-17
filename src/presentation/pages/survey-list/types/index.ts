@@ -1,11 +1,17 @@
-import { SurveyModel } from '@/domain/models'
+import { ILoadSurveyList, LoadSurveyList } from '@/domain/usecases'
 
-export type SurveyStateParams = {
-  surveys: SurveyModel[]
-  error: string
-  reload: boolean
-}
+export namespace SurveyState {
+  export type Params = {
+    surveys: LoadSurveyList.Model[]
+    error: string
+    reload: boolean
+  }
 
-export type SurveyStateProps = {
-  state: SurveyStateParams
+  export type Props = {
+    state: Params
+  }
+
+  export type Types = {
+    loadSurveyList: ILoadSurveyList
+  }
 }

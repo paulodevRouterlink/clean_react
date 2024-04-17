@@ -4,9 +4,9 @@ import {
   CardSurveyEmpty,
 } from '@/presentation/pages/survey-list/components'
 import Styled from './survey-content-list.module.scss'
-import { SurveyStateProps } from '@/presentation/pages/survey-list/types'
+import { SurveyState } from '@/presentation/pages/survey-list/types'
 
-const SurveyContentList: FC<SurveyStateProps> = ({ state }) => {
+const SurveyContentList: FC<SurveyState.Props> = ({ state }) => {
   return (
     <ul data-testid="survey-list" className={Styled.survey_content}>
       {state.surveys.length ? (

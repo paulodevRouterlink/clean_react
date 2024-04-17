@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import { Icon, IconName } from '@/presentation/components/ui'
+import { LoadSurveyList } from '@/domain/usecases'
 import Styled from './card-survey.module.scss'
-import { SurveyModel } from '@/domain/models'
 
 type CardSurveyProps = {
-  survey: SurveyModel
+  survey: LoadSurveyList.Model
 }
 
 const CardSurvey: FC<CardSurveyProps> = ({ survey }) => {
