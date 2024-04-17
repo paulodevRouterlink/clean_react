@@ -16,6 +16,7 @@ export const mockPostRequest = (): HttpPostParams => ({
 
 export const mockGetRequest = (): HttpGetParams => ({
   url: faker.internet.url(),
+  headers: faker.helpers.objectEntry({ prop1: 'value1', prop2: 'value2' }),
 })
 
 export class HttpPostClientSpy<R> implements HttpPostClient<R> {
