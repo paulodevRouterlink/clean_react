@@ -12,4 +12,7 @@ module.exports = {
     '@/(.*)': '<rootDir>/src/$1',
     '\\.scss$': 'identity-obj-proxy',
   },
+  transform: {
+    '.+\\.(ts|tsx)$': 'babel-jest',
+  },
 }
