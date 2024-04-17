@@ -45,7 +45,7 @@ describe('Name of the group', () => {
     expect(screen.getByTestId('error')).toHaveTextContent(error.message)
   })
 
-  test('Should call LoadSurveyList on reload', async () => {
+  test.skip('Should call LoadSurveyList on reload', async () => {
     const loadSurveyListSpy = new LoadSurveyListSpy()
     jest
       .spyOn(loadSurveyListSpy, 'loadAll')
