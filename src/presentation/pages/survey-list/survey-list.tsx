@@ -9,13 +9,13 @@ type SurveyProps = {
 }
 
 const SurveyList: FC<SurveyProps> = ({ loadSurveyList }) => {
-  const { state } = useSurveyList({ loadSurveyList })
+  const { state, setState } = useSurveyList({ loadSurveyList })
 
   return (
     <div className={Styled.survey_list__content}>
       <h2>Enquete</h2>
       {state.error ? (
-        <Error state={state} />
+        <Error props={{ state, setState }} />
       ) : (
         <SurveyContentList state={state} />
       )}

@@ -1,12 +1,29 @@
-import { FC } from 'react'
-import { SurveyStateProps } from '@/presentation/pages/survey-list/types'
+import { Dispatch, FC, SetStateAction } from 'react'
+import {
+  SurveyStateParams,
+  SurveyStateProps,
+} from '@/presentation/pages/survey-list/types'
 import Styled from './error.module.scss'
 
-const Error: FC<SurveyStateProps> = ({ state }) => {
+type SurveySetStateProps = {
+  setState: Dispatch<SetStateAction<SurveyStateParams>>
+}
+
+type ErrorProps = {
+  props: SurveyStateProps & SurveySetStateProps
+}
+
+const Error: FC<ErrorProps> = ({ props: { state, setState } }) => {
+  const handleReload = () => {
+    setState({ surveys: [], error: '', reload: !state.reload })
+  }
+
   return (
     <div className={Styled.error_container}>
       <span data-testid="error">{state.error}</span>
-      <button>Recarregar</button>
+      <button data-testid="reload" onClick={handleReload}>
+        Tentar novamente
+      </button>
     </div>
   )
 }

@@ -7,6 +7,7 @@ const useSurveyList = ({ loadSurveyList }: SurveyProps) => {
   const [state, setState] = useState({
     surveys: [] as SurveyModel[],
     error: '',
+    reload: false,
   })
 
   useEffect(() => {
@@ -14,9 +15,9 @@ const useSurveyList = ({ loadSurveyList }: SurveyProps) => {
       .loadAll()
       .then((surveys) => setState({ ...state, surveys }))
       .catch((error) => setState({ ...state, error: error.message }))
-  }, [])
+  }, [state.reload])
 
-  return { state }
+  return { state, setState }
 }
 
 export { useSurveyList }
