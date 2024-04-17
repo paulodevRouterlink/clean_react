@@ -7,10 +7,14 @@ import {
 } from '@/data/protocols/http'
 
 export class AuthorizeHttpGetClientDecorator implements HttpGetClient {
-  constructor(private readonly getStorage: IGetStorage) {}
+  constructor(
+    private readonly getStorage: IGetStorage,
+    private readonly httpGetClient: HttpGetClient,
+  ) {}
 
-  async get(_params: HttpGetParams): Promise<HttpResponse> {
+  async get(params: HttpGetParams): Promise<HttpResponse> {
     this.getStorage.get('account')
+    await this.httpGetClient.get(params)
     return null
   }
 }
