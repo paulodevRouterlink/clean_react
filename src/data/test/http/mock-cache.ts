@@ -4,7 +4,7 @@ import { IGetStorage } from '@/data/protocols/cache'
 
 export class GetStorageSpy implements IGetStorage {
   key: string
-  value = faker.helpers.objectEntry({ prop1: 'value1', prop2: 'value2' })
+  value: any = faker.helpers.objectEntry({ prop1: 'value1', prop2: 'value2' })
 
   get(key: string): any {
     this.key = key
