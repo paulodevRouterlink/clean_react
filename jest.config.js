@@ -13,6 +13,6 @@ module.exports = {
     '\\.scss$': 'identity-obj-proxy',
   },
   transform: {
-    '.+\\.(ts|tsx)$': 'babel-jest',
+    '.+\\.(ts|tsx)$': 'ts-jest',
   },
 }
