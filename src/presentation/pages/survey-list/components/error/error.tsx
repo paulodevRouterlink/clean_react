@@ -21,13 +21,15 @@ const Error: FC<ErrorProps> = ({ props: { state, setState } }) => {
   return (
     <div className={Styled.error_container}>
       <span data-testid="error">{state.error}</span>
-      <button
-        className="button-primary"
-        data-testid="reload"
-        onClick={handleReload}
-      >
-        Tentar novamente
-      </button>
+      <div>
+        <button
+          className="button-primary"
+          data-testid="reload"
+          onClick={handleReload}
+        >
+          Tentar novamente
+        </button>
+      </div>
     </div>
   )
 }

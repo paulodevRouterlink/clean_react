@@ -1,1 +1,19 @@
 @use '@/presentation/scss/main';
+
+.error_container{
+  display: flex;
+  flex-direction: main.$flex-col;
+  justify-content: center;
+  align-items: center;
+  gap: main.spacing(10px);
+
+  padding: main.spacing(45px);
+  text-align: center;
+  background-color: lighten(main.$cream, 9);
+  border-radius: main.$rounded-2xl;
+
+  span {
+    font-size: main.$font-xl;
+    margin-bottom: main.spacing(15px);
+  }
+}
