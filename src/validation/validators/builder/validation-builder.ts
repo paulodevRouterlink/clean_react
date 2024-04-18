@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { IFieldValidation } from '@/validation/protocols'
 import {
+  CompareFieldsValidation,
   EmailValidation,
   MinLengthValidation,
   RequiredFieldValidation,
 } from '@/validation/validators'
-import { CompareFieldsValidation } from '../compare-fields-validation'
 
 export class ValidationBuilder {
   private constructor(

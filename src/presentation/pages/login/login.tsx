@@ -4,8 +4,8 @@ import { Button, FormStatus, Input } from '@/presentation/components/ui'
 import { IValidation } from '@/presentation/protocols/validation'
 import { IAuthentication } from '@/domain/usecases'
 import { useLogin } from './hook/useLogin'
-import Styled from './login.module.scss'
 import { FormContext } from '@/presentation/contexts/form'
+import Styled from './login.module.scss'
 
 export type LoginPageProps = {
   validation: IValidation
