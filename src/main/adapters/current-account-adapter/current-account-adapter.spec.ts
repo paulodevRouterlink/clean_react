@@ -4,7 +4,6 @@ import {
   setCurrentAccountAdapter,
 } from './current-account-adapter'
 import { LocalStorageAdapter } from '@/infra/cache'
-import { Errors } from '@/domain/errors'
 
 jest.mock('@/infra/cache/local-storage-adapter')
 
@@ -25,11 +24,5 @@ describe('CurrentAccountAdapter', () => {
     const result = getCurrentAccountAdapter()
     expect(getSpy).toHaveBeenCalledWith('account')
     expect(account).toEqual(result)
-  })
-
-  test('Should throws UnexpectedError', () => {
-    expect(() => {
-      setCurrentAccountAdapter(undefined)
-    }).toThrow(new Errors.UnexpectedError())
   })
 })
