@@ -9,7 +9,7 @@ describe('LocalStorageAdapter', () => {
   beforeEach(() => {
     localStorage.clear()
   })
-  test('Should call localStorage.set with correct values', () => {
+  test('Should call localStorage.setItem with correct values', () => {
     const sut = makeSut()
     const key = faker.database.column()
     const value = faker.helpers.objectEntry<AccountModel>({
@@ -39,5 +39,12 @@ describe('LocalStorageAdapter', () => {
 
     expect(obj).toEqual(value)
     expect(getItemSpy).toHaveBeenCalledWith(key)
+  })
+
+  test('Should call localStorage.removeItem if value is null', () => {
+    const sut = makeSut()
+    const key = faker.database.column()
+    sut.set(key, undefined)
+    expect(localStorage.removeItem).toHaveBeenCalledWith(key)
   })
 })
