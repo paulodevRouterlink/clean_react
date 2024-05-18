@@ -1,8 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ISetStorage } from '@/data/protocols/cache'
+import { IGetStorage, ISetStorage } from '@/data/protocols/cache'
 
-export class LocalStorageAdapter implements ISetStorage {
-  async set(key: string, value: any): Promise<void> {
-    localStorage.setItem(key, value)
+export class LocalStorageAdapter implements ISetStorage, IGetStorage {
+  set(key: string, value: object): void {
+    if (value) {
+      localStorage.setItem(key, JSON.stringify(value))
+    } else {
+      localStorage.removeItem(key)
+    }
+  }
+
+  get(key: string): any {
+    return JSON.parse(localStorage.getItem(key))
   }
 }

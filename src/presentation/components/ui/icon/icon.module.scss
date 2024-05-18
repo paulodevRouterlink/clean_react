@@ -1,0 +1,36 @@
+@use '@/presentation/scss/main';
+
+.icon_wrapper {
+  padding: main.spacing(2px);
+  border-radius: main.$rounded-lg;
+  box-shadow: main.$shadow-2xl;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  transition: all 0.2s ease-in-out;
+
+  &__green {
+    background: main.$green;
+  }
+
+  &__red {
+    background: main.$red-600;
+  }
+
+  .icon {
+    color: main.$white;
+  }
+
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: none;
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+}

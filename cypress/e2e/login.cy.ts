@@ -1,6 +1,13 @@
 import { faker } from '@faker-js/faker'
 import * as FormHelper from '../support/helpers/form-helpers'
-import * as Http from '../support/helpers/login-mocks'
+import * as Helper from '../support/helpers/helpers'
+import * as Http from '../support/helpers/http-mocks'
+
+const path = /signin/
+
+const mockOkay = (): void => {
+  return Http.mockOk(path, 'POST', { accessToken: faker.string.uuid() })
+}
 
 const populateFields = (): void => {
   cy.getByTestId('email').focus().type(faker.internet.email())
@@ -23,7 +30,7 @@ describe('Login', () => {
     cy.getByTestId('password').should('have.attr', 'readonly')
     FormHelper.testInputStatus('password', 'Campo Obrigatório', '🔴')
     cy.getByTestId('submit').should('have.attr', 'disabled')
-    FormHelper.testErrorWrap()
+    Helper.testErrorWrap()
   })
 
   it('Should present error state if form is invalid', () => {
@@ -32,7 +39,7 @@ describe('Login', () => {
     cy.getByTestId('password').focus().type(faker.string.alphanumeric(3))
     FormHelper.testInputStatus('password', 'Valor inválido', '🔴')
     cy.getByTestId('submit').should('have.attr', 'disabled')
-    FormHelper.testErrorWrap()
+    Helper.testErrorWrap()
   })
 
   it('Should present valid state if form is valid', () => {
@@ -41,7 +48,7 @@ describe('Login', () => {
     cy.getByTestId('password').focus().type(faker.string.alphanumeric(5))
     FormHelper.testInputStatus('password', 'Tudo Certo!', '🟢')
     cy.getByTestId('submit').should('not.have.attr', 'disabled')
-    FormHelper.testErrorWrap()
+    Helper.testErrorWrap()
   })
 
   it('Should present error if invalid credentials are provided', () => {
@@ -56,18 +63,18 @@ describe('Login', () => {
   it('Should present save accessToken if valid credentials provided', () => {
     simulateValidSubmit()
     FormHelper.testMainError()
-    FormHelper.testUrl('signin')
+    Helper.testUrl('signin')
   })
 
   it('Should prevent multiple submits', () => {
-    Http.mockOkay()
+    mockOkay()
     populateFields()
     cy.getByTestId('submit').dblclick()
     cy.get('@request.all').should('have.length', 0)
   })
 
   it('Should not call submit if form is invalid', () => {
-    Http.mockOkay()
+    mockOkay()
     cy.getByTestId('email').focus().type(faker.internet.email()).type('{enter}')
     cy.get('@request.all').should('have.length', 0)
   })

@@ -12,10 +12,7 @@ module.exports = {
     '@/(.*)': '<rootDir>/src/$1',
     '\\.scss$': 'identity-obj-proxy',
   },
-  // transform: {
-  //   '.+\\.(ts|tsx)$': 'ts-jest',
-  // },
-  // transform: {
-  //   '\\.[jt]sx?$': 'babel-jest',
-  // },
+  transform: {
+    '.+\\.(ts|tsx)$': 'ts-jest',
+  },
 }

@@ -1,12 +1,17 @@
 import { Outlet } from 'react-router-dom'
-import { Footer, Header } from '@/presentation/components/layout'
+import { Footer } from '@/presentation/components/layout'
 import Styled from './auth-layout.module.scss'
 
 const AuthLayout = () => {
   return (
     <main className={Styled.main_container}>
-      <Header />
+      <header>
+        <img src="/logo.png" alt="Logotipo" />
+        <h1>4Dev - Enquete para programadores</h1>
+      </header>
+
       <Outlet />
+
       <Footer />
     </main>
   )
