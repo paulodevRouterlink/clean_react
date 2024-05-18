@@ -35,6 +35,7 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           error={!!state.nameError}
           helperText={state.nameError}
         />
+
         <Input
           type="email"
           name="email"
@@ -45,6 +46,7 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           error={!!state.emailError}
           helperText={state.emailError}
         />
+
         <Input
           type="password"
           name="password"
@@ -55,6 +57,7 @@ const SignUp: FC<Props> = ({ validation, addAccount, saveAccessToken }) => {
           error={!!state.passwordError}
           helperText={state.passwordError}
         />
+
         <Input
           type="password"
           name="passwordConfirmation"

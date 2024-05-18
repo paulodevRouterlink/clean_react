@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { BsHandThumbsUpFill } from 'react-icons/bs'
 import { Footer } from '@/presentation/components/layout'
 import Styled from './survey-list.module.scss'
 
@@ -20,6 +21,9 @@ const SurveyList: FC = () => {
           {Array.from({ length: 3 }).map((_, index) => (
             <li key={index}>
               <div className={Styled.survey_content}>
+                <div className={Styled.icon}>
+                  <BsHandThumbsUpFill />
+                </div>
                 <time>
                   <span className={Styled.day}>22</span>
                   <span className={Styled.month}>03</span>

@@ -98,6 +98,39 @@
             linear-gradient(to right, main.$blue-violet-100, main.$blue-violet-100);
           background-position: 0 0, 54 0;
           background-size: 54px 100%, 100% 100%;
+          position: relative;
+
+          .icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            border: 2px solid transparent;
+            border-radius: main.$rounded-xl;
+            background: main.$danger;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: main.spacing(2.5px);
+            box-shadow: main.$shadow-xl;
+
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+
+            svg {
+              font-size: main.spacing(20px);
+              color: main.$white;
+            }
+
+            &:hover {
+              box-shadow: none;
+              transform: translateY(-2px);
+            }
+
+            &:active {
+              box-shadow: none;
+              transform: translateY(2px);
+            }
+          }
 
           time {
             background-color: main.$warning;
