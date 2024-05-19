@@ -6,4 +6,34 @@
   justify-content: space-between;
   height: 100%;
   width: 100%;
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: main.$flex-col;
+
+    background: main.$black-olive;
+    border-top: main.$spacing-10 solid main.$primary;
+
+    img {
+      @include main.size(5rem);
+      margin-top: main.$spacing-10;
+    }
+
+    h1 {
+      @include main.h1;
+      font-size: main.$font-3xl;
+      letter-spacing: main.$letter-space-wider;
+      color: main.$white;
+      margin-bottom: main.$spacing-10;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    header {
+      text-align: center;
+      border-top-width: main.spacing(20px);
+    }
+  }
 }

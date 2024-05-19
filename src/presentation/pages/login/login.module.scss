@@ -18,7 +18,6 @@
     text-transform: uppercase;
   }
 
-
   .link {
     cursor: pointer;
     margin-top: main.$spacing-3;
@@ -31,5 +30,9 @@
     &:hover {
       color: main.$warning;
     }
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
   }
 }

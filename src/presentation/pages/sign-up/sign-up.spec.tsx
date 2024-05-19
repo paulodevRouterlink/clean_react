@@ -1,18 +1,16 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { faker } from '@faker-js/faker'
 import { SignUp } from './sign-up'
-import {
-  AddAccountSpy,
-  Helper,
-  SaveAccessTokenMock,
-  ValidationStub,
-} from '@/presentation/test'
+import { Helper, ValidationStub } from '@/presentation/test'
 import { Errors } from '@/domain/errors'
+import { AppContext } from '@/presentation/contexts/api'
+import { AddAccount } from '@/domain/usecases'
+import { AddAccountSpy } from '@/domain/test'
 
 type SutTypes = {
   addAccountSpy: AddAccountSpy
-  saveAccessTokenMock: SaveAccessTokenMock
+  setCurrentAccountMock(account: AddAccount.Model): void
 }
 
 type SutParams = {
@@ -23,27 +21,24 @@ const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
   validationStub.errorMessage = params?.validationError
   const addAccountSpy = new AddAccountSpy()
-  const saveAccessTokenMock = new SaveAccessTokenMock()
+  const setCurrentAccountMock = jest.fn()
   render(
-    <BrowserRouter>
-      <SignUp
-        validation={validationStub}
-        addAccount={addAccountSpy}
-        saveAccessToken={saveAccessTokenMock}
-      />
-    </BrowserRouter>,
+    <AppContext.Provider value={{ setCurrentAccount: setCurrentAccountMock }}>
+      <BrowserRouter>
+        <SignUp validation={validationStub} addAccount={addAccountSpy} />
+      </BrowserRouter>
+    </AppContext.Provider>,
   )
 
-  return { addAccountSpy, saveAccessTokenMock }
+  return { addAccountSpy, setCurrentAccountMock }
 }
 
 describe('SignUp Component', () => {
-  afterEach(cleanup)
   test('Should start initial state', () => {
     const validationError = faker.word.words()
     makeSut({ validationError })
-    Helper.testChildCount('error-wrap', 0)
-    Helper.testButtonIsDisabled('submit', true)
+    expect(screen.getByTestId('error-wrap').children).toHaveLength(0)
+    expect(screen.getByTestId('submit')).toBeDisabled()
     Helper.testStatusForField('name', validationError)
     Helper.testStatusForField('email', validationError)
     Helper.testStatusForField('password', validationError)
@@ -107,13 +102,13 @@ describe('SignUp Component', () => {
     Helper.populateField('email')
     Helper.populateField('password')
     Helper.populateField('passwordConfirmation')
-    Helper.testButtonIsDisabled('submit', false)
+    expect(screen.getByTestId('submit')).toBeEnabled()
   })
 
   test('Should show spinner on submit', async () => {
     makeSut()
     await Helper.simulateValidSubmit()
-    Helper.testElementExists('spinner')
+    expect(screen.queryByTestId('spinner')).toBeInTheDocument()
   })
 
   test('Should call AddAccount with correct values', async () => {
@@ -152,28 +147,14 @@ describe('SignUp Component', () => {
     Helper.simulateValidSubmitSign()
     const errorWrap = screen.getByTestId('error-wrap')
     await waitFor(() => errorWrap)
-    Helper.testElementText('main-error', error.message)
-    expect(errorWrap.childElementCount).toBe(1)
+    expect(screen.getByTestId('main-error')).toHaveTextContent(error.message)
+    expect(errorWrap.children).toHaveLength(1)
   })
 
   test('Should call SaveAccessToken on success', async () => {
-    const { addAccountSpy, saveAccessTokenMock } = makeSut()
+    const { addAccountSpy, setCurrentAccountMock } = makeSut()
     Helper.simulateValidSubmitSign()
     await waitFor(() => screen.getByTestId('form'))
-    expect(saveAccessTokenMock.accessToken).toBe(
-      addAccountSpy.account.accessToken,
-    )
-  })
-
-  test.skip('Should prevent error if SaveAccessToken fails', async () => {
-    const { saveAccessTokenMock } = makeSut()
-    const error = new Errors.EmailInUseError()
-    jest.spyOn(saveAccessTokenMock, 'save').mockRejectedValueOnce(error)
-    await Helper.simulateValidSubmit()
-    // const errorWrap = screen.getByTestId('error-wrap')
-    // await waitFor(() => errorWrap)
-    Helper.testElementText('main-error', error.message)
-    Helper.testChildCount('error-wrap', 1)
-    // expect(errorWrap.childElementCount).toBe(1)
+    expect(setCurrentAccountMock).toHaveBeenCalledWith(addAccountSpy.account)
   })
 })

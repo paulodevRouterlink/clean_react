@@ -1,25 +1,48 @@
 @use '@/presentation/scss/main';
 
-.header {
+.survey_list__header {
+  background: main.$primary;
+  border-top: main.$spacing-10 solid main.$dark;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: main.$flex-col;
+  padding: main.spacing(8px) main.spacing(5px);
 
-  background: main.$black-olive;
-  border-top: main.$spacing-10 solid main.$primary;
+  .header__content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    flex-grow: 1;
 
-  img {
-    @include main.size(5rem);
-    margin-top: main.$spacing-10;
+    img {
+      @include main.size(4rem);
+      align-self: center;
+    }
+
+    .header__wrap {
+      align-self: center;
+      display: flex;
+      flex-direction: main.$flex-col;
+      align-items: flex-end;
+      justify-content: center;
+      color: main.$white;
+
+      span {
+        font-size: main.$font-xl;
+        margin-bottom: main.spacing(8px);
+      }
+
+      a {
+        color: main.$white;
+
+        &:hover {
+          color: main.$warning;
+        }
+      }
+    }
   }
 
-  h1 {
-    @include main.h1;
-    font-size: main.$font-3xl;
-    letter-spacing: main.$letter-space-wider;
-    color: main.$white;
-
-    margin-bottom: main.$spacing-10;
+  @media only screen and (max-width: 600px) {
+    border-top-width: main.spacing(20px);
+    padding: main.spacing(8px) main.spacing(20px);
   }
 }

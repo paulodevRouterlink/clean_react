@@ -49,19 +49,6 @@ export const simulateSubmitValidFormLogin = (
   fireEvent.click(submitButton)
 }
 
-export const testChildCount = (fieldName: string, count: number) => {
-  const el = screen.getByTestId(fieldName)
-  expect(el.childElementCount).toBe(count)
-}
-
-export const testButtonIsDisabled = (
-  fieldName: string,
-  isDisabled: boolean,
-) => {
-  const submitButton = screen.getByTestId(fieldName) as HTMLButtonElement
-  expect(submitButton.disabled).toBe(isDisabled)
-}
-
 export const testStatusForField = (
   fieldName: string,
   validationError?: string,
@@ -77,14 +64,4 @@ export const populateField = (
 ): void => {
   const input = screen.getByTestId(fieldName)
   fireEvent.input(input, { target: { value } })
-}
-
-export const testElementExists = (fieldName: string): void => {
-  const el = screen.getByTestId(fieldName)
-  expect(el).toBeTruthy()
-}
-
-export const testElementText = (fieldName: string, text: string) => {
-  const element = screen.getByTestId(fieldName)
-  expect(element.textContent).toBe(text)
 }

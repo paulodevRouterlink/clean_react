@@ -6,8 +6,12 @@
   "plugins": [
     "unused-imports",
     "react-refresh",
-    "cypress"
+    "cypress",
+    "jest"
   ],
+  "env": {
+    "jest/globals": true
+  },
   "rules": {
     "cypress/unsafe-to-chain-command": "off",
     "@typescript-eslint/no-namespace": "off",

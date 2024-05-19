@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Props } from '../sign-up'
+import { AppContext } from '@/presentation/contexts/api'
 
-const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
+const useSignUp = ({ validation, addAccount }: Props) => {
+  const { setCurrentAccount } = useContext(AppContext)
   const navigate = useNavigate()
   const [state, setState] = useState({
     isLoading: false,
@@ -67,7 +69,7 @@ const useSignUp = ({ validation, addAccount, saveAccessToken }: Props) => {
         password: state.password,
         passwordConfirmation: state.passwordConfirmation,
       })
-      await saveAccessToken.save(account.accessToken)
+      setCurrentAccount(account)
     } catch (error) {
       setState({
         ...state,
